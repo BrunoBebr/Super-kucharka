@@ -10,15 +10,17 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MainPageComponent } from './main-page/main-page.component';
-import { ReceptCardComponent } from './recept-card/recept-card.component';
+import { MainPageComponent } from './main-page/main-page/main-page.component';
+import { ReceptCardComponent } from './main-page/recept-card/recept-card.component';
+import { ReceptAddComponent } from './main-page/recept-add/recept-add.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    ReceptCardComponent
+    ReceptCardComponent,
+    ReceptAddComponent
   ],
   imports: [
     BrowserModule,

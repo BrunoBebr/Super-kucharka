@@ -1,0 +1,26 @@
+<div class="center">
+<mat-card class="card" *ngFor="let item of recepty">
+    <mat-card-header>
+      <div mat-card-avatar class="header-image"></div>
+      <mat-card-title >{{item.nazev}}</mat-card-title>
+      <mat-card-subtitle>{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://www.menuodkoko.cz/wp-content/uploads/2017/01/buchti%C4%8Dky-2.jpg" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>{{item.note}}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button class="left"><mat-icon>restaurant</mat-icon> - Číst více</button>
+      
+      <button mat-icon-button class="right"><mat-icon>thumb_down</mat-icon></button>
+      <button mat-icon-button class="right"><mat-icon>thumb_up</mat-icon></button>
+      
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="button-container">
+  <button mat-fab color="primary" aria-label="Nový recept" routerLink="recepty/novy">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
