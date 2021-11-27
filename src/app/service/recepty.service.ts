@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 
-import { Recepty } from './interface';
+import { Recepty } from '../interface';
 
 @Injectable({
   providedIn: 'root'

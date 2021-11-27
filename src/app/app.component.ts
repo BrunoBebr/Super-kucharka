@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Recepty } from './interface';
-import { ReceptyService } from './recepty.service';
+import { ReceptyService } from './service/recepty.service';
 
 @Component({
   selector: 'app-root',
