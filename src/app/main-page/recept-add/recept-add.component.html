@@ -1,1 +1,85 @@
-<p>recept-add works!</p>
+<form [formGroup]="receptAddForm">
+    <mat-stepper #stepper>
+  <mat-step [stepControl]="receptAddForm" errorMessage="Nevyplnili jste všechna potřebá pole ">
+    
+      <ng-template matStepLabel>Základní údaje</ng-template>
+      <div formGroupName="zakladniUdaje">
+      <mat-form-field appearance="outline" >
+        <mat-label>Název receptu</mat-label>
+        <input matInput placeholder="Název receptu" formControlName="nazev" required>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" >
+        <mat-label>Autor</mat-label>
+        <input matInput placeholder="Jméno/přezdívka" formControlName="autor" required>
+      </mat-form-field>
+
+        <div>
+           <p>Ilustrační obrázek</p> 
+          <input  class="form-control" type="file" formControlName="autor" accept="image/*">
+        </div>
+        <br>
+        
+        <mat-form-field appearance="outline" >
+            <mat-label>Úvodní text, ingredience</mat-label>
+            <div id="textarea"><textarea matInput formControlName="poznamka" cols="50" class="form-control-textarea" required></textarea></div>
+          </mat-form-field>  
+        
+      
+      <div>
+          
+        
+        <button mat-button matStepperNext>Pokračovat</button>
+      </div>
+    </div>
+  </mat-step>
+
+ <!-- <mat-step [stepControl]="receptAddForm" errorMessage="Nevyplnili jste všechna potřebá pole " [formGroupName]="i" *ngFor="let customerGroup of receptAddForm.get('postup'); let i = index">
+    
+    <ng-template matStepLabel>Postup</ng-template>
+
+    <button mat-raised-button (click)="addItem()">
+        add item
+      </button>
+
+        <div formArrayName="postup">
+    <mat-form-field appearance="outline" >
+      <mat-label>Název receptu</mat-label>
+      <input matInput placeholder="Název receptu" formControlName="nazev" required>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" >
+      <mat-label>Autor</mat-label>
+      <input matInput placeholder="Jméno/přezdívka" formControlName="cas" required>
+    </mat-form-field>
+
+      <div>
+         <p>Ilustrační obrázek</p> 
+        <input  class="form-control" type="file" formControlName="obrazek" accept="image/*">
+      </div>
+      <br>
+      
+      <mat-form-field appearance="outline" >
+          <mat-label>Úvodní text, ingredience</mat-label>
+          <div id="textarea"><textarea matInput formControlName="postup" cols="50" class="form-control-textarea" required></textarea></div>
+        </mat-form-field>  
+      
+    
+    <div>
+        
+      
+      <button mat-button matStepperNext>Pokračovat</button>
+    </div>
+  </div>
+</mat-step>
+-->
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-stepper>
+</form>
