@@ -1,9 +1,9 @@
-<form [formGroup]="receptAddForm">
-    <mat-stepper #stepper>
-  <mat-step [stepControl]="receptAddForm" errorMessage="Nevyplnili jste všechna potřebá pole ">
+<form [formGroup]="receptAddForm" >
+    <mat-horizontal-stepper #stepper [linear]="true"><div formGroupName="zakladniUdaje">
+  <mat-step [stepControl]="receptAddForm.controls.zakladniUdaje" errorMessage="Nevyplnili jste všechna potřebá pole ">
     
       <ng-template matStepLabel>Základní údaje</ng-template>
-      <div formGroupName="zakladniUdaje">
+      
       <mat-form-field appearance="outline" >
         <mat-label>Název receptu</mat-label>
         <input matInput placeholder="Název receptu" formControlName="nazev" required>
@@ -11,7 +11,7 @@
       
       <mat-form-field appearance="outline" >
         <mat-label>Autor</mat-label>
-        <input matInput placeholder="Jméno/přezdívka" formControlName="autor" required>
+        <input matInput placeholder="Jméno/přezdívka" formControlName="autor" type="text" required>
       </mat-form-field>
 
         <div>
@@ -31,18 +31,16 @@
         
         <button mat-button matStepperNext>Pokračovat</button>
       </div>
-    </div>
-  </mat-step>
-
- <!-- <mat-step [stepControl]="receptAddForm" errorMessage="Nevyplnili jste všechna potřebá pole " [formGroupName]="i" *ngFor="let customerGroup of receptAddForm.get('postup'); let i = index">
+   
+  </mat-step> </div>
+<div formArrayName="postup">
+  <mat-step [stepControl]="postup" errorMessage="Nevyplnili jste všechna potřebá pole " [formGroupName]="i"  *ngFor="let customerGroup of getControlsPostup(); let i = index">
     
-    <ng-template matStepLabel>Postup</ng-template>
+    <ng-template matStepLabel>Postup {{i + 1}}</ng-template>
+  <!--<ng-template matStepContent>-->
+    
 
-    <button mat-raised-button (click)="addItem()">
-        add item
-      </button>
-
-        <div formArrayName="postup">
+        
     <mat-form-field appearance="outline" >
       <mat-label>Název receptu</mat-label>
       <input matInput placeholder="Název receptu" formControlName="nazev" required>
@@ -66,13 +64,15 @@
       
     
     <div>
-        
-      
-      <button mat-button matStepperNext>Pokračovat</button>
+      <button mat-button matStepperPrevious>Zpět</button>
+      <button mat-button matStepperNext (click)="addItemPostup()">
+        Přidat
+      </button>
+      <button mat-button matStepperNext >Dokončit</button>
     </div>
-  </div>
+<!--</ng-template>-->
 </mat-step>
--->
+</div>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     <p>You are now done.</p>
@@ -81,5 +81,9 @@
       <button mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
-</mat-stepper>
+</mat-horizontal-stepper>
 </form>
+
+
+<p>Form value: {{ receptAddForm.value | json }}</p>
+<p>Form status: {{ receptAddForm.status | json }}</p>

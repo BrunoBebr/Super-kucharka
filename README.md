@@ -1,6 +1,6 @@
-# SuperKucharka
+# Super Kuchačka - webová aplikace
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.10.
+Tento projekt byl vytvořen pomocí [Angular CLI](https://github.com/angular/angular-cli) verze 13.0.3.
 
 ## Development server
 

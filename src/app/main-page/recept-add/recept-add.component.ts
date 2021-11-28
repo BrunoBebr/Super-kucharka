@@ -15,6 +15,11 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators, } from '@an
 })
 export class ReceptAddComponent implements OnInit {
   receptAddForm!: FormGroup;
+
+  isLinear = false;
+  formGroup!: FormGroup;
+  form!: FormArray;
+  postup!: FormArray;
   //postup: FormArray | any[] | undefined;
 
   //currentStep = 0;
@@ -22,32 +27,56 @@ export class ReceptAddComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.receptAddForm = new FormGroup({
+    this.receptAddForm = this._formBuilder.group({
       'zakladniUdaje': new FormGroup({
-        'nazev': new FormControl(null, Validators.required),
-        'autor': new FormControl(null, Validators.required),
-        'obrazek': new FormControl(null),
-        'poznamka': new FormControl(null, Validators.required)
+        'nazev': new FormControl("", Validators.required),
+        'autor': new FormControl("", Validators.required),
+        'obrazek': new FormControl(""),
+        'poznamka': new FormControl("", Validators.required),        
       }),
-     // postup: this._formBuilder.array([this.init()])    
+     postup: this._formBuilder.array([this.initPostup()])   
     })
-    //this.addItem();
+    
+    
+    this.formGroup = this._formBuilder.group({
+      form : this._formBuilder.array([this.init()])
+    }) 
+    this.addItem();
   }
 
- /* init(){
+ initPostup(){
     return this._formBuilder.group({
-        'nazev': new FormControl(null, Validators.required),
-        'cas': new FormControl(null, Validators.required),
-        'obrazek': new FormControl(null),
-        'postup': new FormControl(null, Validators.required)
+        nazev: new FormControl("", Validators.required),
+        cas: new FormControl("", Validators.required),
+        obrazek: new FormControl(""),
+        postup: new FormControl("", Validators.required)
+    })
+  }
+  
+  addItemPostup(){
+    this.postup = this.receptAddForm.get('postup') as FormArray;
+    this.postup.push(this.initPostup());
+  }
+
+  init(){
+    return this._formBuilder.group({
+      cont :new FormControl('', [Validators.required]),
     })
   }
   
   addItem(){
-    this.postup = this.receptAddForm.get('postup') as FormArray;
-    this.postup.push(this.init());
-  }*/
+    this.form = this.formGroup.get('form') as FormArray;
+    this.form.push(this.init());
+  }
+  getControls() {
+    return (this.receptAddForm.get('zakladniUdaje') as FormGroup).controls;
+ }
+ getControlsPostup() {
+   console.log((this.receptAddForm.get('postup') as FormArray).controls);
+  return (this.receptAddForm.get('postup') as FormArray).controls;
 }
+}
+
 
   
 
