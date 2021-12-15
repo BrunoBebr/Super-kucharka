@@ -19,7 +19,8 @@ export class ReceptAddComponent implements OnInit {
   isLinear = false;
   formGroup!: FormGroup;
   form!: FormArray;
-  postup!: FormArray;
+  postup!: any;
+  
   //postup: FormArray | any[] | undefined;
 
   //currentStep = 0;
@@ -55,12 +56,19 @@ export class ReceptAddComponent implements OnInit {
   
   addItemPostup(){
     this.postup = this.receptAddForm.get('postup') as FormArray;
-    this.postup.push(this.initPostup());
+    if(this.receptAddForm.status == "VALID"){
+      this.postup.push(this.initPostup());
+    }
+    
   }
 
   removeItemPostup(){
-   // this.postup = this.receptAddForm.get('postup') as FormArray;
-    //this.removeElement(this.postup);
+   this.postup = this.receptAddForm.get('postup') as FormArray;
+    if(this.postup.length != 1){
+      this.postup.removeAt(this.postup.length - 1);
+    }
+   
+    
   }
 
   removeElement(arr:any) {
