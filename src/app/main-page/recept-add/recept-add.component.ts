@@ -58,6 +58,17 @@ export class ReceptAddComponent implements OnInit {
     this.postup.push(this.initPostup());
   }
 
+  removeItemPostup(){
+   // this.postup = this.receptAddForm.get('postup') as FormArray;
+    //this.removeElement(this.postup);
+  }
+
+  removeElement(arr:any) {
+    if(arr.length > 0)
+      arr.length --;
+    return arr
+  };
+
   init(){
     return this._formBuilder.group({
       cont :new FormControl('', [Validators.required]),
