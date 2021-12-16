@@ -2,6 +2,9 @@
 
 Tento projekt byl vytvořen pomocí [Angular CLI](https://github.com/angular/angular-cli) verze 13.0.3.
 
+## Všechny recepty
+Všechny recepty naleznete ve složce "všechny recepty"
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
