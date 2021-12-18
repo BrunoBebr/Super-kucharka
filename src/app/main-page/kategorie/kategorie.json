@@ -1,0 +1,29 @@
+{
+    "kategorie": {
+        "Teplá jídla": {
+            "Předkrm":"",
+            "Polévka":"",
+            "Hlavní chod":{
+                "Omáčka":"",
+                "Vegan":"",
+                "Kuřečí Maso":"",
+                "Vepřové Maso":"",
+                "Hovězí Maso":""
+            },
+            "Dezerty":""
+        },
+        "Studená jídla":{
+            "Předkrm":"",
+            "Polévka":"",
+            "Hlavní chod":"",
+            "Dezerty":""
+        },
+        "Pití":{
+            "Alkoholické":"",
+            "Nealkolohické":"",
+            "Koktejly":"",
+            "Teplé":"",
+            "Studené":""
+        }
+    }
+}
