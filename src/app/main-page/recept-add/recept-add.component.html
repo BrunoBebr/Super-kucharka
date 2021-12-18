@@ -29,12 +29,13 @@
       <div>
           
         
-        <button mat-button matStepperNext>Pokračovat</button>
+        <button mat-button matStepperNext>Další</button>
       </div>
    
   </mat-step> </div>
 <div formArrayName="postup">
-  <mat-step [stepControl]="postup" errorMessage="Nevyplnili jste všechna potřebá pole " [formGroupName]="i"  *ngFor="let customerGroup of getControlsPostup(); let i = index">
+  
+  <mat-step  errorMessage="Nevyplnili jste všechna potřebá pole " [formGroupName]="i"  *ngFor="let customerGroup of getControlsPostup(); let i = index">
     
     <ng-template matStepLabel>Postup {{i + 1}}</ng-template>
   <!--<ng-template matStepContent>-->
@@ -48,7 +49,7 @@
     
     <mat-form-field appearance="outline" >
       <mat-label>Čas</mat-label>
-      <input matInput placeholder="Čas" formControlName="cas" required>
+      <input matInput placeholder="Čas" formControlName="cas" required type="number" min="0">
     </mat-form-field>
 
       <div>
@@ -65,15 +66,15 @@
     
     <div>
       <button mat-button matStepperPrevious>Zpět</button>
-      <button mat-button matStepperNext >Další</button>
-      <button mat-button matStepperNext (click)="addItemPostup()">
+      <button mat-button (click)="nextItem(stepper)" >Další</button>
+      <button mat-button (click)="addItemPostup(stepper)">
         Přidat
       </button>
       <button mat-button (click)="removeItemPostup()">
         Odebrat
       </button>
-      
-    </div>
+      </div>
+    
 <!--</ng-template>-->
 </mat-step>
 </div>

@@ -1,6 +1,7 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-recept-add',
@@ -20,6 +21,7 @@ export class ReceptAddComponent implements OnInit {
   formGroup!: FormGroup;
   form!: FormArray;
   postup!: any;
+  
   
   //postup: FormArray | any[] | undefined;
 
@@ -54,10 +56,11 @@ export class ReceptAddComponent implements OnInit {
     })
   }
   
-  addItemPostup(){
+  addItemPostup(stepper: MatStepper){
     this.postup = this.receptAddForm.get('postup') as FormArray;
     if(this.receptAddForm.status == "VALID"){
       this.postup.push(this.initPostup());
+      stepper.next();
     }
     
   }
@@ -87,9 +90,18 @@ export class ReceptAddComponent implements OnInit {
     this.form = this.formGroup.get('form') as FormArray;
     this.form.push(this.init());
   }
+
+
   getControls() {
     return (this.receptAddForm.get('zakladniUdaje') as FormGroup).controls;
  }
+ nextItem(stepper: MatStepper){
+  if(this.receptAddForm.status == "VALID"){
+    stepper.next();
+  } 
+ }
+
+
  getControlsPostup() {
    console.log((this.receptAddForm.get('postup') as FormArray).controls);
   return (this.receptAddForm.get('postup') as FormArray).controls;

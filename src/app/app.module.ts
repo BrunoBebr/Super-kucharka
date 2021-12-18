@@ -20,6 +20,9 @@ import { ReceptCardComponent } from './main-page/recept-card/recept-card.compone
 import { ReceptAddComponent } from './main-page/recept-add/recept-add.component';
 import { KategorieComponent } from './main-page/kategorie/kategorie.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTreeModule} from '@angular/material/tree';
+
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatInputModule,
     MatChipsModule,
     MatCheckboxModule,
+    MatExpansionModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
