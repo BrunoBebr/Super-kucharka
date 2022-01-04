@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 import { Recepty } from '../interface';
+import { Data } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,20 @@ baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty/';
 
   getAll() {
     return this.http.get(`${this.baseUrl}/list.php`).pipe(
+      map((res: any) => {
+        return res['data'];
+      })
+    );
+  }
+  getSpecific(id: number) {
+    return this.http.get(`${this.baseUrl}/list.php`).pipe(
+      map((res: any) => {
+        return res['data'];
+      })
+    );
+  }
+  store(data: Recepty) {
+    return this.http.post(`${this.baseUrl}/store.php`, { data: data }).pipe(
       map((res: any) => {
         return res['data'];
       })

@@ -1,4 +1,5 @@
-<form [formGroup]="receptAddForm" >
+<form let f="ngForm" [formGroup]="receptAddForm" >
+  
     <mat-horizontal-stepper #stepper [linear]="true"><div formGroupName="zakladniUdaje">
   <mat-step [stepControl]="receptAddForm.controls.zakladniUdaje" errorMessage="Nevyplnili jste všechna potřebá pole ">
     
@@ -15,17 +16,50 @@
       </mat-form-field>
 
         <div>
-           <p>Ilustrační obrázek</p> 
-          <input  class="form-control" type="file" formControlName="autor" accept="image/*">
+           <p>Hlavní obrázek</p> 
+          <input  class="form-control" type="file" formControlName="obrazek" accept="image/*" (change)="fileEvent($event)" id="main-image"/>
+          <button (click)="onSubmitform()">Upload</button> 
+        
+
         </div>
         <br>
         
         <mat-form-field appearance="outline" >
-            <mat-label>Úvodní text, ingredience</mat-label>
-            <div id="textarea"><textarea matInput formControlName="poznamka" cols="50" class="form-control-textarea" required></textarea></div>
+            <mat-label>Úvodní text, poznámky</mat-label>
+            <div id="textarea"><textarea matInput formControlName="note" cols="50" class="form-control-textarea" required></textarea></div>
           </mat-form-field>  
-        
+          <mat-form-field appearance="outline" >
+            <mat-label>Potřebné suroviny</mat-label>
+            <div id="textarea"><textarea matInput formControlName="suroviny" cols="50" class="form-control-textarea" required></textarea></div>
+          </mat-form-field>  
+          <mat-form-field appearance="outline" >
+            <mat-label>Skill</mat-label>
+            
+            <mat-select formControlName="skill" required>
+              <mat-option value="Začátečník">Začátečník</mat-option>
+              <mat-option value="Mírně pokročilý">Mírně pokročilý</mat-option>
+              <mat-option value="Středně pokročilý">Středně pokročilý</mat-option>
+              <mat-option value="Pokročilý">Pokročilý</mat-option>
+              <mat-option value="Profi">Profi</mat-option>
+            </mat-select>
+          </mat-form-field> 
+          <mat-form-field appearance="outline" >
+ 
+            <mat-label>Čas přípravy receptu</mat-label>
+        <input matInput type="number" placeholder="Celkový čas přípravy" formControlName="cas_pripravy" required>
+          </mat-form-field>   
       
+          <!--<mat-form-field appearance="outline" >
+            <mat-label>Kategorie</mat-label>
+            
+            <mat-select formControlName="kategorie" required>
+              <mat-option value="Začátečník">Začátečník</mat-option>
+              <mat-option value="Mírně pokročilý">Mírně pokročilý</mat-option>
+              <mat-option value="Středně pokročilý">Středně pokročilý</mat-option>
+              <mat-option value="Pokročilý">Pokročilý</mat-option>
+              <mat-option value="Profi">Profi</mat-option>
+            </mat-select>
+          </mat-form-field> -->
       <div>
           
         
@@ -49,7 +83,12 @@
     
     <mat-form-field appearance="outline" >
       <mat-label>Čas</mat-label>
-      <input matInput placeholder="Čas" formControlName="cas" required type="number" min="0">
+      <input matInput placeholder="Čas" formControlName="cas" required type="number" min="0" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
     </mat-form-field>
 
       <div>
@@ -68,7 +107,7 @@
       <button mat-button matStepperPrevious>Zpět</button>
       <button mat-button (click)="nextItem(stepper)" >Další</button>
       <button mat-button (click)="addItemPostup(stepper)">
-        Přidat
+        Přidat krok
       </button>
       <button mat-button (click)="removeItemPostup()">
         Odebrat
@@ -79,16 +118,26 @@
 </mat-step>
 </div>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <ng-template matStepLabel>Náhled</ng-template>
+    <br>
+    <p class="mat-title center">{{ receptAddForm.value.zakladniUdaje.nazev}}</p>
+    <p class="mat-h6 center">{{ receptAddForm.value.zakladniUdaje.autor}} | Upraveno {{curDate | date:'yyyy-MM-dd'}}</p>
+    <br>
+    <p class="mat-h4 center">Obtížnost : {{ receptAddForm.value.zakladniUdaje.skill}} | Časová náročnost : {{ receptAddForm.value.zakladniUdaje.cas_pripravy}}</p>
+    <br>
+    <p class="mat-h4 center">{{ receptAddForm.value.zakladniUdaje.note}}</p>
+    <br>
+    <p class="mat-h4 center">{{ receptAddForm.value.zakladniUdaje.suroviny}}</p>
+
     <div>
-      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperPrevious class="left">Zpět</button>
+      <button mat-button type="submit" [disabled]="!receptAddForm.valid" (click)="addRecept(receptAddForm)" class="right">Narát recept</button>
       
     </div>
   </mat-step>
 </mat-horizontal-stepper>
 </form>
 
-
+<!--
 <p>Form value: {{ receptAddForm.value | json }}</p>
-<p>Form status: {{ receptAddForm.status | json }}</p>
+<p>Form status: {{ receptAddForm.status}}</p>-->

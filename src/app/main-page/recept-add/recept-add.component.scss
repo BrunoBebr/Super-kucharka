@@ -15,3 +15,13 @@ textarea {
     text-align: left;
     width: 100%;
 }
+.center {
+    display: flex;
+    justify-content: center;
+  }
+  .left {
+    float: left;
+  }
+  .right { 
+    float:  right;
+  }

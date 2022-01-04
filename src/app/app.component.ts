@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Recepty } from './interface';
 import { ReceptyService } from './service/recepty.service';
 
@@ -8,7 +9,7 @@ import { ReceptyService } from './service/recepty.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'Super-kucharka';
+  title = 'Super kuchařka';
 
   recepty: Recepty[] = [];
   error = '';
@@ -33,4 +34,6 @@ export class AppComponent implements OnInit{
       }
     );
   }
+ 
+  
 }

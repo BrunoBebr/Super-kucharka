@@ -22,6 +22,9 @@ import { KategorieComponent } from './main-page/kategorie/kategorie.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTreeModule} from '@angular/material/tree';
+import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -30,7 +33,8 @@ import {MatTreeModule} from '@angular/material/tree';
     MainPageComponent,
     ReceptCardComponent,
     ReceptAddComponent,
-    KategorieComponent
+    KategorieComponent,
+    ReceptDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +54,9 @@ import {MatTreeModule} from '@angular/material/tree';
     MatChipsModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

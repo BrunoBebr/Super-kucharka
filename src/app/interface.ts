@@ -1,8 +1,15 @@
+
 export interface Recepty {
-    id?: number;
+    id: number;
     nazev: string;
     autor: string;
+    suroviny: string;
+    cas_pripravy: number;
+    skill: string;
+    kroky: string;
+    hodnoceni: number;
     date: string;
     note: string;
-    cas_pripravy: number;
+    autor_img: string;
+    main_img: string;
 }
