@@ -45,7 +45,7 @@
           </mat-form-field> 
           <mat-form-field appearance="outline" >
  
-            <mat-label>Čas přípravy receptu</mat-label>
+            <mat-label>Čas přípravy receptu v minutách</mat-label>
         <input matInput type="number" placeholder="Celkový čas přípravy" formControlName="cas_pripravy" required>
           </mat-form-field>   
       
@@ -82,7 +82,7 @@
     </mat-form-field>
     
     <mat-form-field appearance="outline" >
-      <mat-label>Čas</mat-label>
+      <mat-label>Čas v minutách</mat-label>
       <input matInput placeholder="Čas" formControlName="cas" required type="number" min="0" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
