@@ -11,7 +11,7 @@ import { Data } from '@angular/router';
 })
 export class ReceptyService {
 //  baseUrl = 'http://localhost/api/recepty';
-baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty/';
+baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty';
 
   constructor(private http: HttpClient) { }
 

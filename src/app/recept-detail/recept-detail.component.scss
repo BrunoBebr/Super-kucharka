@@ -1,0 +1,46 @@
+#id {
+    background-color: red;
+}
+.center{
+    text-align: center;
+  }
+.nazev{
+    font-size: 30px;
+}  
+.autor{
+    color: #545454;
+}
+
+.image{
+    width: 40%;
+    min-height: 200px;
+    max-width: 600px;
+    position: absolute;
+    left: 5%;
+    border-radius: 5px;
+    border: 3px solid black;
+    display: inline-block;
+    margin-right: 5%;
+    object-fit: cover;
+    
+}
+.poznamka{
+   
+    width: 40%;
+    height: 20%;
+    position: absolute;
+    right: 5%;
+    padding-left: 5%;
+    text-align: center;
+vertical-align: middle;
+    display: inline-block;
+    line-height: 40px;
+    justify-content: center;
+    margin: 0;
+    
+}
+.poznamka p {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

@@ -1,3 +1,12 @@
-<div id="obrazek">
-
+<div *ngFor="let item of recepty">
+    <br>
+    <p class="mat-title center nazev">{{item.nazev}}</p>
+    <p class="mat-h5 center autor">{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</p>
+   <img mat-card-image class="image" src="../../../assets/images/{{item.main_img}}">
+    
+    <div class="poznamka mat-subheading-2"><p>{{item.note}}</p></div>
+    
 </div>
+
+
+
