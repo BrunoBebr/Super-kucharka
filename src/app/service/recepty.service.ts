@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
 
-import { Recepty } from '../interface';
+import { DeatilRecept, Recepty } from '../interface';
 import { Data } from '@angular/router';
 
 @Injectable({
@@ -23,7 +23,8 @@ baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty/';
     );
   }
   getSpecific(id: number) {
-    return this.http.get(`${this.baseUrl}/list.php`).pipe(
+    let params = new HttpParams().set("id", id);
+    return this.http.get(`${this.baseUrl}/search.php`, { params }).pipe(
       map((res: any) => {
         return res['data'];
       })

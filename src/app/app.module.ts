@@ -25,6 +25,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatExpansionModule,
     MatTreeModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

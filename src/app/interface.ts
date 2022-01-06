@@ -13,3 +13,7 @@ export interface Recepty {
     autor_img: string;
     main_img: string;
 }
+
+export interface DeatilRecept {
+        id: number;
+}
