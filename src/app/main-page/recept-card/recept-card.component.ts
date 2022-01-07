@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Recepty } from '../../interface';
 import { ReceptyService } from '../../service/recepty.service';
 
@@ -14,7 +15,7 @@ export class ReceptCardComponent implements OnInit {
   error = '';
   success = '';
         
-  constructor(private receptyService: ReceptyService) {
+  constructor(private receptyService: ReceptyService, public dialog: MatDialog) {
   }
         
   ngOnInit() {
@@ -33,4 +34,14 @@ export class ReceptCardComponent implements OnInit {
       }
     );
   }
+  openDialog() {
+    this.dialog.open(HodnoceniDialog);
+  }
 }
+
+@Component({
+  selector: 'hodnoceni-dialog',
+  templateUrl: 'hodnoceni-dialog.html',
+})
+export class HodnoceniDialog {}
+

@@ -18,7 +18,7 @@
     position: absolute;
     left: 5%;
     border-radius: 5px;
-    border: 3px solid black;
+    border: 3px solid rgba(104, 104, 104, 0.425);
     display: inline-block;
     margin-right: 5%;
     object-fit: cover;
@@ -30,7 +30,25 @@
     height: 20%;
     position: absolute;
     right: 5%;
-    padding-left: 5%;
+    text-align: center;
+vertical-align: middle;
+    display: inline-block;
+    line-height: 40px;
+    justify-content: center;
+    margin: 0;
+    border-bottom: 3px solid rgba(104, 104, 104, 0.425); 
+    
+}
+.poznamka p {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.info{
+    width: 39%;
+    right: 5%;
+    top: 40%;
+    position: absolute;
     text-align: center;
 vertical-align: middle;
     display: inline-block;
@@ -38,9 +56,42 @@ vertical-align: middle;
     justify-content: center;
     margin: 0;
     
+    color :black;
 }
-.poznamka p {
+.info mat-icon{
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+}
+.infotext{
+    width: 40%;
+    right: 5%;
+    top: 45%;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    text-align: center;
+vertical-align: middle;
+    display: inline-block;
+    line-height: 40px;
+    justify-content: center;
+    margin: 0;
+    
+    color :black;
+}
+.infotext span {
+    font-size: 1.3vw;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+span mat-icon{
+    font-size: 2vw;
+    height: 2vw;
+    width: 2vw;
+    vertical-align: middle;
+    
+    
+    
 }

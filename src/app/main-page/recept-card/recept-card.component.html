@@ -5,14 +5,15 @@
       <mat-card-title [routerLink]="['/recept', item.id]">{{item.nazev}}</mat-card-title>
       <mat-card-subtitle>{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="../../../assets/images/{{item.main_img}}">
-    <mat-card-content>
-      <p> {{ (item.note.length>80)? (item.note | slice:0:80)+'...':(item.note) }}</p>
+    
+    <mat-card-content><img mat-card-image src="../../../assets/images/{{item.main_img}}" style="height: 300px; /* adjust as needed */
+    object-fit: contain;">
+      <p style="width:400px; height:40px;"> {{ (item.note.length>80)? (item.note | slice:0:80)+'...':(item.note) }}</p>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button class="left" [routerLink]="['/recept', item.id]"><mat-icon>restaurant</mat-icon> - Číst více</button>
       
-      <button mat-button class="right"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></button>
+      <button mat-button class="right" (click)="openDialog()"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></button>
      <!-- <button mat-icon-button class="right"><mat-icon>thumb_up</mat-icon></button>-->
       
     </mat-card-actions>

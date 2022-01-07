@@ -13,6 +13,9 @@ import {map, startWith} from 'rxjs/operators';
 export interface User {
   name: string;
 }
+export interface Time {
+  name: string;
+}
 
 @Component({
   selector: 'app-recept-add',
@@ -48,7 +51,10 @@ export class ReceptAddComponent implements OnInit {
 
   myControl = new FormControl();
   options: User[] = [{name: "0"}, {name: '1'},{name: '2'},{name: '3'},{name: '4'},{name: '5'},{name: '6'},{name: '7'},{name: '8'},{name: '9'}, {name: '10'},{name: '15'},{name: '20'},{name: '25'},{name: '30'},{name: '35'},{name: '40'},{name: '45'},{name: '50'},{name: '55'},{name: '60'},];
+  time: Time[] = [{name: "10"}, {name: '15'},{name: '20'},{name: '25'},{name: '30'},{name: '35'},{name: '40'},{name: '45'},{name: '50'},{name: '60'}, {name: '70'},{name: '80'},{name: '90'},{name: '100'},{name: '110'},{name: '120'},{name: '130'},{name: '140'},{name: '150'},{name: '160'},{name: '170'},{name: '180'},{name: '190'},{name: '200'},];
+
   filteredOptions: Observable<User[]> | undefined;
+  filteredOptionsTime: Observable<Time[]> | undefined;
 
   ngOnInit(): void {
     this.getRecepty();
@@ -58,7 +64,7 @@ export class ReceptAddComponent implements OnInit {
         'autor': new FormControl("", Validators.required),
         'obrazek': new FormControl(""),
         'suroviny': new FormControl("", Validators.required),
-        'note': new FormControl("", Validators.required),
+        'note': new FormControl("", [Validators.minLength(70),Validators.maxLength(350), Validators.required ]),
         'skill': new FormControl("", Validators.required), 
         'cas_pripravy': new FormControl("", Validators.required),        
       }),
@@ -77,6 +83,11 @@ export class ReceptAddComponent implements OnInit {
       map(value => (typeof value === 'string' ? value : value.name)),
       map(name => (name ? this._filter(name) : this.options.slice())),
     );
+    this.filteredOptionsTime = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => (typeof value === 'string' ? value : value.name)),
+      map(name => (name ? this._filterTime(name) : this.time.slice())),
+    );
   }
 
   displayFn(user: User): string {
@@ -88,6 +99,16 @@ export class ReceptAddComponent implements OnInit {
 
     return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
   }
+  displayFnTime(time: Time): string {
+    return time && time.name ? time.name : '';
+  }
+  private _filterTime(name: string): User[] {
+    const filterValue = name.toLowerCase();
+
+    return this.options.filter(option => option.name.toLowerCase().includes(filterValue));
+  }
+
+  
 
  initPostup(){
     return this._formBuilder.group({

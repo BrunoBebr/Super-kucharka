@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Component, EventEmitter } from '@angular/core';
 import {MatChipsModule} from '@angular/material/chips';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
-import { ReceptCardComponent } from './main-page/recept-card/recept-card.component';
+import { HodnoceniDialog, ReceptCardComponent } from './main-page/recept-card/recept-card.component';
 import { ReceptAddComponent } from './main-page/recept-add/recept-add.component';
 import { KategorieComponent } from './main-page/kategorie/kategorie.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -27,6 +27,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { OnasComponent } from './onas/onas.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -37,7 +41,8 @@ import { OnasComponent } from './onas/onas.component';
     ReceptAddComponent,
     KategorieComponent,
     ReceptDetailComponent,
-    OnasComponent
+    OnasComponent,
+    HodnoceniDialog
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,10 @@ import { OnasComponent } from './onas/onas.component';
     MatTreeModule,
     MatSelectModule,
     MatAutocompleteModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

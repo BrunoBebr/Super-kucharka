@@ -5,7 +5,28 @@
    <img mat-card-image class="image" src="../../../assets/images/{{item.main_img}}">
     
     <div class="poznamka mat-subheading-2"><p>{{item.note}}</p></div>
+    <div class="info">
     
+   
+    
+    <mat-grid-list cols="3" rowHeight="3:1">
+        <mat-grid-tile><mat-icon>star</mat-icon></mat-grid-tile>
+        <mat-grid-tile> <mat-icon>timer</mat-icon></mat-grid-tile>
+        <mat-grid-tile><mat-icon>miscellaneous_services</mat-icon></mat-grid-tile>
+        
+      </mat-grid-list>
+    </div>
+    <div class="infotext">
+        <mat-grid-list cols="3" rowHeight="3:1">
+            <mat-grid-tile><span *ngIf="item.hodnoceni == 0" style="color: grey; font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
+                           <span *ngIf="item.hodnoceni < 0" style="color: rgb(230, 86, 86); font-weight: bold;">{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
+                           <span *ngIf="item.hodnoceni > 0" style="color: rgb(117, 216, 117); font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}</span>
+            </mat-grid-tile>
+            <mat-grid-tile><span>{{item.cas_pripravy}} min</span></mat-grid-tile>
+            <mat-grid-tile><span>{{item.skill}}</span></mat-grid-tile>
+            
+          </mat-grid-list>
+    </div>
 </div>
 
 
