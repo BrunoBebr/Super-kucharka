@@ -4,11 +4,13 @@ export var kategorie = {
             "Předkrm":null,
             "Polévka":null,
             "Hlavní chod":{
-                "Omáčka":null,
+                "Omáčky":null,
                 "Vegan":null,
                 "Kuřečí Maso":null,
                 "Vepřové Maso":null,
-                "Hovězí Maso":null
+                "Hovězí Maso":null,
+                "Ryby":null,
+                "Saláty":null
             },
             "Dezerty":null
         },
