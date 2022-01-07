@@ -1,33 +1,71 @@
 <div *ngFor="let item of recepty">
     <br>
-    <p class="mat-title center nazev">{{item.nazev}}</p>
-    <p class="mat-h5 center autor">{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</p>
-   <img mat-card-image class="image" src="../../../assets/images/{{item.main_img}}">
-    
-    <div class="poznamka mat-subheading-2"><p>{{item.note}}</p></div>
-    <div class="info">
+    <mat-grid-list cols="4" rowHeight="8:2">
+      <mat-grid-tile><mat-icon (click)="lastPage()" style="position: absolute;
+        left: 40px;">arrow_back_ios</mat-icon></mat-grid-tile>
+      <mat-grid-tile colspan="2">
+        <div>
+        <p class="mat-title center nazev">{{item.nazev}}</p>
+        
+        <p class="mat-h5 center autor">{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</p>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile ></mat-grid-tile>
+      <mat-grid-tile colspan="2" ><div class="infotext">
+        <div class="info">
     
    
     
-    <mat-grid-list cols="3" rowHeight="3:1">
-        <mat-grid-tile><mat-icon>star</mat-icon></mat-grid-tile>
-        <mat-grid-tile> <mat-icon>timer</mat-icon></mat-grid-tile>
-        <mat-grid-tile><mat-icon>miscellaneous_services</mat-icon></mat-grid-tile>
-        
-      </mat-grid-list>
-    </div>
-    <div class="infotext">
-        <mat-grid-list cols="3" rowHeight="3:1">
-            <mat-grid-tile><span *ngIf="item.hodnoceni == 0" style="color: grey; font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
-                           <span *ngIf="item.hodnoceni < 0" style="color: rgb(230, 86, 86); font-weight: bold;">{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
-                           <span *ngIf="item.hodnoceni > 0" style="color: rgb(117, 216, 117); font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}</span>
-            </mat-grid-tile>
-            <mat-grid-tile><span>{{item.cas_pripravy}} min</span></mat-grid-tile>
-            <mat-grid-tile><span>{{item.skill}}</span></mat-grid-tile>
-            
+          <mat-grid-list cols="3" rowHeight="3:1">
+              <mat-grid-tile><mat-icon>star</mat-icon></mat-grid-tile>
+              <mat-grid-tile> <mat-icon>timer</mat-icon></mat-grid-tile>
+              <mat-grid-tile><mat-icon>miscellaneous_services</mat-icon></mat-grid-tile>
+              <mat-grid-tile>
+                <span class="hodn" *ngIf="item.hodnoceni == 0" style="color: grey; font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
+                <span class="hodn" *ngIf="item.hodnoceni < 0" style="color: rgb(230, 86, 86); font-weight: bold;">{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
+                <span class="hodn" *ngIf="item.hodnoceni > 0" style="color: rgb(117, 216, 117); font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}</span></mat-grid-tile>
+              <mat-grid-tile> <span>{{item.cas_pripravy}} min</span></mat-grid-tile>
+              <mat-grid-tile><span>{{item.skill}}</span></mat-grid-tile>
           </mat-grid-list>
-    </div>
-</div>
+          </div>
+        </div></mat-grid-tile>
+    <mat-grid-tile ></mat-grid-tile>
+      <mat-grid-tile rowspan="6" colspan="2">
+        <div style="margin-left: 20px; margin-right: 20px;">
+          <img mat-card-image class="image" src="../../../assets/images/{{item.main_img}}">
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile rowspan="6" colspan="2">
+        <div style="margin-left: 20px; margin-right: 20px;">
+        <div class="poznamka mat-subheading-2">
+          <p>{{item.note}}</p>
+        </div></div>
+      </mat-grid-tile>
+      
+      <mat-grid-tile>3</mat-grid-tile>
+      <mat-grid-tile>4</mat-grid-tile>
+      <mat-grid-tile>4</mat-grid-tile>
+      <mat-grid-tile>4</mat-grid-tile>
+    </mat-grid-list>
+   
+    
+    <mat-stepper #stepper [orientation]="(stepperOrientation | async)!" *ngIf="krokyToArray(item.kroky) as respObject"> 
+      <ng-template matStepperIcon="edit"><mat-icon>done</mat-icon></ng-template>
+
+      <div *ngFor="let i of Arr(num).fill(1); let x = index" >
+        
+        <mat-step >
+         {{respObject[x].nazev}}
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </mat-step></div>
+      
+      
+     
+    </mat-stepper>
+</div>     
+
 
 
 

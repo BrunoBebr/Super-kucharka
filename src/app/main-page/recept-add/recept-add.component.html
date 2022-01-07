@@ -7,12 +7,14 @@
       
       <mat-form-field appearance="outline" >
         <mat-label>Název receptu</mat-label>
-        <input matInput placeholder="Název receptu" formControlName="nazev" required>
+        <input matInput placeholder="Název receptu" #nazev formControlName="nazev" required maxlength="50">
+        <mat-hint  align="end">{{nazev.value.length}} / 50</mat-hint>
       </mat-form-field>
       
       <mat-form-field appearance="outline" >
         <mat-label>Autor</mat-label>
-        <input matInput placeholder="Jméno/přezdívka" formControlName="autor" type="text" required>
+        <input matInput placeholder="Jméno/přezdívka" formControlName="autor" #autor type="text" required maxlength="50">
+        <mat-hint  align="end">{{autor.value.length}} / 50</mat-hint>
       </mat-form-field>
 
         <div>
@@ -26,16 +28,19 @@
         
         <mat-form-field appearance="outline" >
             <mat-label>Úvodní text, poznámky</mat-label>
-            <div id="textarea"><textarea matInput #message formControlName="note" cols="50" class="form-control-textarea" required minlength="70" maxlength="350" errorMessage="Nevyplnili jste všechna potřebá pole "></textarea>
-              <mat-hint  *ngIf="message.value.length < 70" align="start" style="color: rgba(255, 70, 70, 0.705);"><strong>Zadejte minimálně 70 znaků</strong> </mat-hint>
-              <mat-hint  *ngIf="message.value.length >= 70" align="start" style="color: rgba(255, 70, 70, 0.705);"><strong>V žádném případě zde nesdílejte své osobní údaje !</strong> </mat-hint>
-              <mat-hint  align="end" style="position: absolute; right: 20px;">{{message.value.length}} / 350</mat-hint>
+            <div id="textarea"><textarea matInput #note formControlName="note" cols="50" class="form-control-textarea" required minlength="70" maxlength="350" errorMessage="Nevyplnili jste všechna potřebá pole "></textarea>
+              <mat-hint  *ngIf="note.value.length < 70" align="start" style="color: rgba(255, 70, 70, 0.705);"><strong>Zadejte minimálně 70 znaků</strong> </mat-hint>
+              <mat-hint  *ngIf="note.value.length >= 70" align="start" style="color: rgba(77, 77, 77, 0.377);"><strong>V žádném případě zde nesdílejte své osobní údaje !</strong> </mat-hint>
+              <mat-hint  align="end" style="position: absolute; right: 20px;">{{note.value.length}} / 350</mat-hint>
               
             </div>
           </mat-form-field>  
           <mat-form-field appearance="outline" >
             <mat-label>Potřebné suroviny</mat-label>
-            <div id="textarea"><textarea matInput formControlName="suroviny" cols="50" class="form-control-textarea" required></textarea></div>
+            <div id="textarea"><textarea matInput formControlName="suroviny" #suroviny cols="50" class="form-control-textarea" required maxlength="2500"></textarea>
+              
+              <mat-hint  align="end" style="position: absolute; right: 20px; bottom: 20px;">{{suroviny.value.length}} / 2500</mat-hint>
+            </div>
           </mat-form-field>  
           <mat-form-field appearance="outline" >
             <mat-label>Skill</mat-label>

@@ -1,8 +1,14 @@
 import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Recepty } from '../interface';
+import { Postup, Recepty } from '../interface';
 import { ReceptyService } from '../service/recepty.service';
+import {Location} from '@angular/common';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {BreakpointObserver} from '@angular/cdk/layout';
+import {StepperOrientation} from '@angular/material/stepper';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-recept-detail',
@@ -11,15 +17,21 @@ import { ReceptyService } from '../service/recepty.service';
 })
 export class ReceptDetailComponent implements OnInit {
   public id?: string;
-
-
-  constructor(private activatedRoute: ActivatedRoute, private receptyService: ReceptyService) { 
+  isLinear = false;
+  formGroup! : FormGroup;
+  form!: FormArray;
+  constructor(private activatedRoute: ActivatedRoute, private receptyService: ReceptyService, private _location: Location, private _formBuilder: FormBuilder,  breakpointObserver: BreakpointObserver) { 
+    this.stepperOrientation = breakpointObserver
+      .observe('(min-width: 800px)')
+      .pipe(map(({matches}) => (matches ? 'horizontal' : 'vertical')));
   }
 
   recepty: Recepty[] = [];
   error = '';
   success = '';
   public reviews: any = '';
+  kroky!:number;
+  postup: Postup[] = [];
 
   async ngOnInit(): Promise<void> {
     this.activatedRoute.params.subscribe(paramsId => {
@@ -28,6 +40,7 @@ export class ReceptDetailComponent implements OnInit {
   //console.log(this.id);
   await this.getReceptId(this.id);
     
+  
   }
   getReceptId(id : any): void {
     this.receptyService.getSpecific(id).subscribe(
@@ -35,7 +48,7 @@ export class ReceptDetailComponent implements OnInit {
         this.recepty = data;
         this.reviews = this.recepty[0]['hodnoceni'];
         
-        
+        console.log(this.recepty);
         this.success = 'successful retrieval of the list';
       },
       (err) => {
@@ -46,5 +59,23 @@ export class ReceptDetailComponent implements OnInit {
     );
     
   }
+  lastPage() {
+    this._location.back();
+  }
+  krokyToArray(kroky:any){
+    
+    var objData = JSON.parse(kroky);
+    console.log(objData);
+     this.postup = objData;
+    this.num = objData.length;
+    return objData;
+  }
   
+  
+ 
+
+  Arr = Array; //Array type captured in a variable
+  num:number =1;
+
+  stepperOrientation: Observable<StepperOrientation>;
 }
