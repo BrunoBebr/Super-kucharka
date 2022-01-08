@@ -14,12 +14,28 @@ export class ReceptCardComponent implements OnInit {
   recepty: Recepty[] = [];
   error = '';
   success = '';
+  load = false;
+  uploaded = false;
+  uploadMessage= false;
         
   constructor(private receptyService: ReceptyService, public dialog: MatDialog) {
   }
         
   ngOnInit() {
     this.getRecepty();
+
+    this.load = true;
+      if(this.uploaded = true){
+        this.uploadMessage = true;
+        this.delay(1000).then(any=>{
+          this.load = false;
+          this.uploadMessage = false;
+          
+        });
+      }
+      
+    
+    
   }
         
   getRecepty(): void {
@@ -27,6 +43,7 @@ export class ReceptCardComponent implements OnInit {
       (data: Recepty[]) => {
         this.recepty = data;
         this.success = 'successful retrieval of the list';
+        this.uploaded = true;
       },
       (err) => {
         console.log(err);
@@ -36,6 +53,14 @@ export class ReceptCardComponent implements OnInit {
   }
   openDialog() {
     this.dialog.open(HodnoceniDialog);
+  }
+
+  async delay(ms: number) {
+    await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then();
+}
+
+  loadingSpinner(){
+    
   }
 }
 
