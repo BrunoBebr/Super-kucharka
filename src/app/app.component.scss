@@ -22,16 +22,29 @@
  position: relative;
 }
 #ctenicko{
- width: 50%;
+  width: 50%;
   padding-top: 20px;
   float: left;
   position: relative;
 }
 #problem{
   width: 100%;
- bottom: 0px;
- position: absolute;
+  bottom: 0px;
+  position: absolute;
 }
 .inputik {
-  
+  text-align: center;
+  width: 250px;
+  height: 25px;
+  right: 220px;
+  position: absolute;
+}
+#hledat {
+  fill: currentColor;
+  right: 154px;
+  position: absolute;
+  height: 29px;
+  width: 65px;
+  background-color: gray;
+  border: 1px solid gray;
 }
