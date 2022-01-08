@@ -94,7 +94,7 @@
         
         <mat-step label="{{respObject[x].nazev}}">
           <br>
-        <p *ngIf="respObject[x].cas == 0">Pro tento krok nebyl nastaven žádný čas</p>
+        <p *ngIf="respObject[x].cas == 0  || respObject[x].cas.name == 0">Pro tento krok nebyl nastaven žádný čas</p>
          <p *ngIf="respObject[x].cas > 0 && respObject[x].cas <= 1" >Tento krok vám zabere cca {{respObject[x].cas}} minutu.</p>
          <p *ngIf="respObject[x].cas > 0 && respObject[x].cas > 1 && respObject[x].cas <= 4" >Tento krok vám zabere cca {{respObject[x].cas}} minuty.</p>
          <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name <= 1" >Tento krok vám zabere cca {{respObject[x].cas.name}} minutu.</p>
@@ -106,14 +106,20 @@
 
         <p>{{respObject[x].postup}}</p>
          
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button *ngIf="x+1 > 1" mat-button matStepperPrevious>Zpět</button>
+        <button *ngIf="i+1 > x" mat-button matStepperNext>Další</button>
       </mat-step></div>
       
       
      
     </mat-stepper>
-</div>     
+</div>    
+
+<div class="loading" *ngIf=load>
+  <mat-spinner style="position: absolute; top: 50%; left: 50%;  margin: -25px 0 0 -25px;"></mat-spinner>
+  <p  style="position: absolute; top: 65%; left: 50%;  margin: -25px 0 0 -25px; color: black;">Načítání dat</p>
+  
+  </div>
 
 
 

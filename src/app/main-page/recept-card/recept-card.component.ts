@@ -27,7 +27,7 @@ export class ReceptCardComponent implements OnInit {
     this.load = true;
       if(this.uploaded = true){
         this.uploadMessage = true;
-        this.delay(1000).then(any=>{
+        this.delay(300).then(any=>{
           this.load = false;
           this.uploadMessage = false;
           
