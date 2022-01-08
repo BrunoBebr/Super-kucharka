@@ -107,7 +107,7 @@
         <p>{{respObject[x].postup}}</p>
          
         <button *ngIf="x+1 > 1" mat-button matStepperPrevious>Zpět</button>
-        <button *ngIf="i+1 > x" mat-button matStepperNext>Další</button>
+        <button *ngIf="x <= i" mat-button matStepperNext>Další</button>
       </mat-step></div>
       
       
