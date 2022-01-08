@@ -93,10 +93,10 @@
         
         <mat-step label="{{respObject[x].nazev}}">
           <br>
-        <p *ngIf="respObject[x].cas.name == 0" >Pro tento krok nebyl nastaven žádný čas</p>
-         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name <= 1" >Tento krok vám zabere cca {{respObject[x].cas.name}} minutu.</p>
-         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 1 && respObject[x].cas.name <= 4" >Tento krok vám zabere cca {{respObject[x].cas.name}} minuty.</p>
-         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 4" >Tento krok vám zabere cca {{respObject[x].cas.name}} minut.</p>
+        <p *ngIf="respObject[x].cas == 0" >Pro tento krok nebyl nastaven žádný čas</p>
+         <p *ngIf="respObject[x].cas > 0 && respObject[x].cas <= 1" >Tento krok vám zabere cca {{respObject[x].cas}} minutu.</p>
+         <p *ngIf="respObject[x].cas > 0 && respObject[x].cas > 1 && respObject[x].cas <= 4" >Tento krok vám zabere cca {{respObject[x].cas}} minuty.</p>
+         <p *ngIf="respObject[x].cas > 0 && respObject[x].cas > 4" >Tento krok vám zabere cca {{respObject[x].cas}} minut.</p>
         <br>
 
         <p>{{respObject[x].postup}}</p>
