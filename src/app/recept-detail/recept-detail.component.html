@@ -76,6 +76,7 @@
       <br><br>
       <div style="margin-left: 20px;margin-right: 20px;position: relative; ">
         <div class="poznamka mat-subheading-2">
+          <p><b>Suroviny, které budete potřebovat:</b></p>
           <p style="transform: translateY(0%);">{{item.suroviny}}</p>
         </div></div>
         <br><br>
@@ -85,7 +86,7 @@
       <mat-grid-tile>4</mat-grid-tile>-->
     
    
-    
+    <p style="padding-left: 28px; font-size: 18px;"><b>Interaktivní postup:</b></p>
     <mat-stepper #stepper [orientation]="(stepperOrientation | async)!" *ngIf="krokyToArray(item.kroky) as respObject"> 
       <ng-template matStepperIcon="edit"><mat-icon>done</mat-icon></ng-template>
 
@@ -93,22 +94,32 @@
         
         <mat-step label="{{respObject[x].nazev}}">
           <br>
-        <p *ngIf="respObject[x].cas.name == 0" >Pro tento krok nebyl nastaven žádný čas</p>
+        <p *ngIf="respObject[x].cas == 0  || respObject[x].cas.name == 0">Pro tento krok nebyl nastaven žádný čas</p>
+         <p *ngIf="respObject[x].cas > 0 && respObject[x].cas <= 1" >Tento krok vám zabere cca {{respObject[x].cas}} minutu.</p>
+         <p *ngIf="respObject[x].cas > 0 && respObject[x].cas > 1 && respObject[x].cas <= 4" >Tento krok vám zabere cca {{respObject[x].cas}} minuty.</p>
          <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name <= 1" >Tento krok vám zabere cca {{respObject[x].cas.name}} minutu.</p>
          <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 1 && respObject[x].cas.name <= 4" >Tento krok vám zabere cca {{respObject[x].cas.name}} minuty.</p>
-         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 4" >Tento krok vám zabere cca {{respObject[x].cas.name}} minut.</p>
+
+         <p *ngIf="respObject[x].cas > 0 && respObject[x].cas > 4 " >Tento krok vám zabere cca {{respObject[x].cas}} minut.</p>
+         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 4 " >Tento krok vám zabere cca {{respObject[x].cas.name}} minut.</p>
         <br>
 
         <p>{{respObject[x].postup}}</p>
          
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+        <button *ngIf="x+1 > 1" mat-button matStepperPrevious>Zpět</button>
+        <button *ngIf="x <= i" mat-button matStepperNext>Další</button>
       </mat-step></div>
       
       
      
     </mat-stepper>
-</div>     
+</div>    
+
+<div class="loading" *ngIf=load>
+  <mat-spinner style="position: absolute; top: 50%; left: 50%;  margin: -25px 0 0 -25px;"></mat-spinner>
+  <p  style="position: absolute; top: 65%; left: 50%;  margin: -25px 0 0 -25px; color: black;">Načítání dat</p>
+  
+  </div>
 
 
 

@@ -20,6 +20,10 @@ export class ReceptDetailComponent implements OnInit {
   isLinear = false;
   formGroup! : FormGroup;
   form!: FormArray;
+  load = false;
+  uploaded = false;
+  uploadMessage = false;
+
   constructor(private activatedRoute: ActivatedRoute, private receptyService: ReceptyService, private _location: Location, private _formBuilder: FormBuilder,  breakpointObserver: BreakpointObserver) { 
     this.stepperOrientation = breakpointObserver
       .observe('(min-width: 800px)')
@@ -40,7 +44,15 @@ export class ReceptDetailComponent implements OnInit {
   //console.log(this.id);
   await this.getReceptId(this.id);
     
-  
+  this.load = true;
+  if(this.uploaded = true){
+    this.uploadMessage = true;
+    this.delay(300).then(any=>{
+      this.load = false;
+      this.uploadMessage = false;
+      
+    });
+  }
   }
   getReceptId(id : any): void {
     this.receptyService.getSpecific(id).subscribe(
@@ -59,6 +71,12 @@ export class ReceptDetailComponent implements OnInit {
     );
     
   }
+
+  async delay(ms: number) {
+    await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then();
+}
+
+
   lastPage() {
     this._location.back();
   }

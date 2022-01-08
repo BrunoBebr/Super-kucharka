@@ -145,14 +145,19 @@
     <p class="mat-h4 center">{{ receptAddForm.value.zakladniUdaje.suroviny}}</p>
 
     <div>
+      
       <button mat-button matStepperPrevious class="left">Zpět</button>
-      <button mat-button type="submit" [disabled]="!receptAddForm.valid" (click)="addRecept(receptAddForm)" class="right">Narát recept</button>
+      <button mat-button type="submit" [disabled]="!receptAddForm.valid" (click)="addRecept(receptAddForm); receptAddForm.reset()" class="right">Narát recept</button>
       
     </div>
   </mat-step>
 </mat-horizontal-stepper>
 </form>
+<div class="loading" *ngIf=load>
+<mat-spinner style="position: absolute; top: 50%; left: 50%;  margin: -25px 0 0 -25px;"></mat-spinner>
+<p *ngIf="uploadMessage" style="position: absolute; top: 65%; left: 50%;  margin: -25px 0 0 -25px; color: white;">Úspěšně nahráno</p>
 
+</div>
 <!--
 <p>Form value: {{ receptAddForm.value | json }}</p>
 <p>Form status: {{ receptAddForm.status}}</p>-->

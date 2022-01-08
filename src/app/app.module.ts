@@ -34,6 +34,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ShareButtonsPopupModule } from 'ngx-sharebuttons/popup';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareModule } from 'ngx-sharebuttons';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -75,6 +77,7 @@ import { ShareModule } from 'ngx-sharebuttons';
     ShareButtonsPopupModule,
     ShareIconsModule,
     ShareModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

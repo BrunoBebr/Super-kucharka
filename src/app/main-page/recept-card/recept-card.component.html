@@ -6,7 +6,7 @@
       <mat-card-subtitle>{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</mat-card-subtitle>
     </mat-card-header>
     
-    <mat-card-content><img mat-card-image src="../../../assets/images/{{item.main_img}}" style="height: 300px; /* adjust as needed */
+    <mat-card-content [routerLink]="['/recept', item.id]"><img mat-card-image src="../../../assets/images/{{item.main_img}}" style="height: 300px; /* adjust as needed */
     object-fit: contain;">
       <p style="width:400px; height:40px;"> {{ (item.note.length>80)? (item.note | slice:0:80)+'...':(item.note) }}</p>
     </mat-card-content>
@@ -20,7 +20,11 @@
   </mat-card>
 </div>
 
-
+<div class="loading" *ngIf=load>
+  <mat-spinner style="position: absolute; top: 50%; left: 50%;  margin: -25px 0 0 -25px;"></mat-spinner>
+  <p  style="position: absolute; top: 65%; left: 50%;  margin: -25px 0 0 -25px; color: black;">Načítání dat</p>
+  
+  </div>
 <!--<div class="button-container">
   <button mat-fab color="primary" aria-label="Nový recept" routerLink="recepty/novy">
     <mat-icon>add</mat-icon>

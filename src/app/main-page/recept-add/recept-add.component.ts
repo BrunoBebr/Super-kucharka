@@ -34,13 +34,14 @@ export class ReceptAddComponent implements OnInit {
   recepty: Recepty[] = [];
   error = '';
   success = '';
-
+  load = false;
   isLinear = false;
   formGroup!: FormGroup;
   form!: FormArray;
   postup!: any;
   http: any;
-
+  uploaded = false;
+  uploadMessage = false;
   
   
   //postup: FormArray | any[] | undefined;
@@ -89,6 +90,10 @@ export class ReceptAddComponent implements OnInit {
       map(name => (name ? this._filterTime(name) : this.time.slice())),
     );
   }
+
+  async delay(ms: number) {
+    await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then();
+}
 
   displayFn(user: User): string {
     return user && user.name ? user.name : '';
@@ -185,6 +190,8 @@ getRecepty(): void {
 
 addRecept(receptAddForm: FormGroup) {
   this.resetAlerts();
+  this.loadingSpinner();
+
 //console.log("SEND " + JSON.stringify(receptAddForm.value));
   this.receptyService.store(receptAddForm.value).subscribe(
     
@@ -194,12 +201,27 @@ addRecept(receptAddForm: FormGroup) {
       //console.log("SENT " + JSON.stringify(receptAddForm.value));
       // Inform the user
       this.success = 'Created successfully';
-
+      this.uploaded = true;
       // Reset the form
       receptAddForm.reset();
     },
     (err) => (this.error = err.message)
   );
+}
+loadingSpinner(){
+  this.load = true;
+  this.delay(3000).then(any=>{
+    if(this.uploaded = true){
+      this.uploadMessage = true;
+      this.delay(1000).then(any=>{
+        this.load = false;
+        this.uploadMessage = false;
+        window.location.reload();
+      });
+    }
+    
+  });
+  
 }
 
 resetAlerts() {

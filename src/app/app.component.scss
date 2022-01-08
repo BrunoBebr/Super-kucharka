@@ -5,6 +5,10 @@
    position: absolute;
    right: 20px;
  } 
+ .searchbar{
+  position: absolute;
+  right: 5%;
+} 
  #footer{
   background-color: #4350af;
   color: white;
@@ -22,13 +26,34 @@
  position: relative;
 }
 #ctenicko{
- width: 50%;
+  width: 50%;
   padding-top: 20px;
   float: left;
   position: relative;
 }
 #problem{
   width: 100%;
- bottom: 0px;
- position: absolute;
+  bottom: 0px;
+  position: absolute;
+}
+.inputik {
+  text-align: center;
+  width: 250px;
+  height: 25px;
+  right: 220px;
+  position: absolute;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(255, 255, 255, 0.801);
+  font-size: medium;
+  opacity: 1; /* Firefox */
+}
+#hledat {
+  fill: currentColor;
+  right: 154px;
+  position: absolute;
+  height: 29px;
+  width: 65px;
+  background-color: gray;
+  border: 1px solid gray;
 }
