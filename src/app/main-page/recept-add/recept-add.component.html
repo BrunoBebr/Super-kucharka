@@ -28,18 +28,18 @@
         
         <mat-form-field appearance="outline" >
             <mat-label>Úvodní text, poznámky</mat-label>
-            <div id="textarea"><textarea matInput #note formControlName="note" cols="50" class="form-control-textarea" required minlength="70" maxlength="350" errorMessage="Nevyplnili jste všechna potřebá pole "></textarea>
+            <div id="textarea"><textarea matInput #note formControlName="note" cols="50" class="form-control-textarea" required minlength="70" maxlength="700" errorMessage="Nevyplnili jste všechna potřebá pole "></textarea>
               <mat-hint  *ngIf="note.value.length < 70" align="start" style="color: rgba(255, 70, 70, 0.705);"><strong>Zadejte minimálně 70 znaků</strong> </mat-hint>
               <mat-hint  *ngIf="note.value.length >= 70" align="start" style="color: rgba(77, 77, 77, 0.377);"><strong>V žádném případě zde nesdílejte své osobní údaje !</strong> </mat-hint>
-              <mat-hint  align="end" style="position: absolute; right: 20px;">{{note.value.length}} / 350</mat-hint>
+              <mat-hint  align="end" style="position: absolute; right: 20px;">{{note.value.length}} / 700</mat-hint>
               
             </div>
           </mat-form-field>  
           <mat-form-field appearance="outline" >
             <mat-label>Potřebné suroviny</mat-label>
-            <div id="textarea"><textarea matInput formControlName="suroviny" #suroviny cols="50" class="form-control-textarea" required maxlength="2500"></textarea>
+            <div id="textarea"><textarea matInput formControlName="suroviny" #suroviny cols="50" class="form-control-textarea" required maxlength="1800" placeholder="Na tento recept budeme potřebovat..."></textarea>
               
-              <mat-hint  align="end" style="position: absolute; right: 20px; bottom: 20px;">{{suroviny.value.length}} / 2500</mat-hint>
+              <mat-hint  align="end" style="position: absolute; right: 20px; bottom: 20px;">{{suroviny.value.length}} / 1800</mat-hint>
             </div>
           </mat-form-field>  
           <mat-form-field appearance="outline" >

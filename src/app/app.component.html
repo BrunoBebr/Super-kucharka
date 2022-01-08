@@ -1,9 +1,38 @@
 <mat-toolbar color="primary">
   <img src="https://i.pinimg.com/originals/e8/91/4e/e8914ecfbad4ae0144f168663d89a3cd.jpg" style="background-size: cover;  width: 50px; padding: 5px; border-radius: 50%;">
   <span>Kuchařka pro tlouštíky</span>
-  <span class="example-spacer"></span>
+  <span class="right"><mat-icon (click)="scroll(share)">share</mat-icon></span>
   
 </mat-toolbar>
 
 
 <router-outlet></router-outlet>
+
+<div id="footer">
+  
+
+  <div id="kontakty">
+    <p class="mat-title text-center">Kontakty<i class="fab fa-facebook-f" size="2em"></i></p>
+    
+    <p class="mat-h4 text-center">+420 420 420 696</p>
+   
+    <p class="mat-h4 text-center">kucharkaprotloustiky@seznam.cz</p>
+    
+  </div>
+
+  <div id="ctenicko">
+    <p class="mat-title text-center" [routerLink]="['/onas']">O nás</p>
+    <p class="mat-h4 text-center">Vznik webu</p>
+    <p class="mat-h4 text-center">Náš tým</p>
+  </div>
+ 
+ 
+  <div id="problem" #share>
+    <share-buttons [theme]="'circles-dark'"
+    [include]="['facebook','twitter','linkedin','pinterest','reddit','tumblr','mix','viber','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
+    [show]="6"
+    
+  ></share-buttons>
+  <br>
+  <p class="mat-h4 ">©2022 Kuchařky pro tlouštíky s.r.o.</p></div>
+</div>

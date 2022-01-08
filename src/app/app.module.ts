@@ -30,8 +30,10 @@ import { OnasComponent } from './onas/onas.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
-
+import {MatMenuModule} from '@angular/material/menu';
+import { ShareButtonsPopupModule } from 'ngx-sharebuttons/popup';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { ShareModule } from 'ngx-sharebuttons';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,11 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatGridListModule,
     MatDialogModule,
     MatDividerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule,
+    ShareButtonsPopupModule,
+    ShareIconsModule,
+    ShareModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,10 +5,21 @@
     text-align: center;
   }
 .nazev{
-    font-size: 30px;
+    font-size:3vw;
+    margin: 0 auto;
+    height: 4vw;
 }  
 .autor{
     color: #545454;
+    font-size: 1vw;
+    margin: 0 auto;
+    
+    color: #545454;
+    font-size: 1vw;
+    margin: 0 auto;
+    position: relative;
+    bottom: 1vw;
+    height: 1vw;
 }
 .centerDiv{
     width: 100%;
@@ -19,36 +30,46 @@
 }
 .image{
     width: 95%;
-    height: 100%;
-    border-radius: 5px;
-    /* border: 3px solid #000000b6; */
+    height: 95%;
+    border-radius: 20px;
+     
     /* margin: 10px; */
-    object-fit: cover;
+    object-fit: contain;
     position: absolute;
     top: 2.5%;
     left: 2.5%;
 
 }
+
 .poznamka{
     width: 100%;
     height: 100%;
-    top: 40px;
+    
     position: relative;
     text-align: center;
     vertical-align: middle;
-    line-height: 40px;
+    line-height: 2vw;
     justify-content: center;
     margin: 0 auto;
+    border-radius: 1.5px;
+    white-space: pre-wrap;
+
+   // border-bottom: 3px solid #0000003a;
 }
 .poznamka p {
     position: relative;
-    top: 45%;
+    top: 50%;
     transform: translateY(-50%);
+    font-size: 1vw;
+    width: 90%;
+    white-space: pre-wrap;
+
+    margin: 0 auto;
 }
-mat-grid-tile{
+/*mat-grid-tile{
     border: 3px solid #000000b6;
   
-}
+}*/
 .info{
     width: 100%;
     
@@ -72,8 +93,9 @@ vertical-align: middle;
     color: #000000b6;
 }
 .infotext{
-    width: 70%;
-    
+    width: 100%;
+    white-space: pre-wrap;
+
     text-align: center;
 vertical-align: middle;
     display: inline-block;

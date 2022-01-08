@@ -4,13 +4,38 @@
       <mat-grid-tile><mat-icon (click)="lastPage()" style="position: absolute;
         left: 40px;">arrow_back_ios</mat-icon></mat-grid-tile>
       <mat-grid-tile colspan="2">
-        <div>
+        <div style="
+        position: relative;
+        width: 50%;
+        height: 100%;
+    ">
+    <div style="padding-top: 1vw;">
         <p class="mat-title center nazev">{{item.nazev}}</p>
         
         <p class="mat-h5 center autor">{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</p>
-        </div>
+        </div></div>
       </mat-grid-tile>
-      <mat-grid-tile></mat-grid-tile>
+      <mat-grid-tile>
+        <div style="position: absolute;
+        right: 20px;
+    ">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>share</mat-icon>
+          <span>Sdílet recept</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>report</mat-icon>
+          <span>Nahlásit</span>
+        </button>
+        
+        
+      </mat-menu>
+    </div>
+    </mat-grid-tile>
       <mat-grid-tile ></mat-grid-tile>
       <mat-grid-tile colspan="2" ><div class="infotext">
         <div class="info">
@@ -18,36 +43,47 @@
    
     
           <mat-grid-list cols="3" rowHeight="3:1">
-              <mat-grid-tile><mat-icon>star</mat-icon></mat-grid-tile>
-              <mat-grid-tile> <mat-icon>timer</mat-icon></mat-grid-tile>
-              <mat-grid-tile><mat-icon>miscellaneous_services</mat-icon></mat-grid-tile>
+              <mat-grid-tile><span><mat-icon>star</mat-icon></span>&nbsp;
+                <span class="hodn" *ngIf="item.hodnoceni == 0" style="color: grey; font-weight: bold;"><mat-icon style="color: grey;">expand_less</mat-icon>{{item.hodnoceni}}<mat-icon style="color: grey;">expand_more</mat-icon></span>
+                <span class="hodn" *ngIf="item.hodnoceni < 0" style="color: rgb(230, 86, 86); font-weight: bold;">{{item.hodnoceni}}<mat-icon style="color: rgb(230, 86, 86); ">expand_more</mat-icon></span>
+                <span class="hodn" *ngIf="item.hodnoceni > 0" style="color: rgb(117, 216, 117); font-weight: bold;"><mat-icon style="color: rgb(117, 216, 117); ">expand_less</mat-icon>{{item.hodnoceni}}</span></mat-grid-tile>
+              <mat-grid-tile> 
+                <span><mat-icon>timer</mat-icon></span>&nbsp;&nbsp;&nbsp;
+                <span>{{item.cas_pripravy}} min</span></mat-grid-tile>
               <mat-grid-tile>
-                <span class="hodn" *ngIf="item.hodnoceni == 0" style="color: grey; font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
-                <span class="hodn" *ngIf="item.hodnoceni < 0" style="color: rgb(230, 86, 86); font-weight: bold;">{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></span>
-                <span class="hodn" *ngIf="item.hodnoceni > 0" style="color: rgb(117, 216, 117); font-weight: bold;"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}</span></mat-grid-tile>
-              <mat-grid-tile> <span>{{item.cas_pripravy}} min</span></mat-grid-tile>
-              <mat-grid-tile><span>{{item.skill}}</span></mat-grid-tile>
+                <span><mat-icon>miscellaneous_services</mat-icon></span>&nbsp;&nbsp;&nbsp;
+                <span>{{item.skill}}</span></mat-grid-tile>
+              
+                
+               
+              
           </mat-grid-list>
           </div>
         </div></mat-grid-tile>
     <mat-grid-tile ></mat-grid-tile>
-      <mat-grid-tile rowspan="6" colspan="2">
+      <mat-grid-tile rowspan="3" colspan="2">
         <div style="margin-left: 20px; margin-right: 20px;">
           <img mat-card-image class="image" src="../../../assets/images/{{item.main_img}}">
         </div>
       </mat-grid-tile>
-      <mat-grid-tile rowspan="6" colspan="2">
-        <div style="margin-left: 20px; margin-right: 20px;">
+      <mat-grid-tile rowspan="3" colspan="2">
+        <div style="margin-left: 20px;margin-right: 20px;position: relative;width: 100%;height: 100%;">
         <div class="poznamka mat-subheading-2">
           <p>{{item.note}}</p>
         </div></div>
       </mat-grid-tile>
-      
-      <mat-grid-tile>3</mat-grid-tile>
+      </mat-grid-list>
+      <br><br>
+      <div style="margin-left: 20px;margin-right: 20px;position: relative; ">
+        <div class="poznamka mat-subheading-2">
+          <p style="transform: translateY(0%);">{{item.suroviny}}</p>
+        </div></div>
+        <br><br>
+      <!--<mat-grid-tile>4</mat-grid-tile>
       <mat-grid-tile>4</mat-grid-tile>
       <mat-grid-tile>4</mat-grid-tile>
-      <mat-grid-tile>4</mat-grid-tile>
-    </mat-grid-list>
+      <mat-grid-tile>4</mat-grid-tile>-->
+    
    
     
     <mat-stepper #stepper [orientation]="(stepperOrientation | async)!" *ngIf="krokyToArray(item.kroky) as respObject"> 
@@ -55,8 +91,16 @@
 
       <div *ngFor="let i of Arr(num).fill(1); let x = index" >
         
-        <mat-step >
-         {{respObject[x].nazev}}
+        <mat-step label="{{respObject[x].nazev}}">
+          <br>
+        <p *ngIf="respObject[x].cas.name == 0" >Pro tento krok nebyl nastaven žádný čas</p>
+         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name <= 1" >Tento krok vám zabere cca {{respObject[x].cas.name}} minutu.</p>
+         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 1 && respObject[x].cas.name <= 4" >Tento krok vám zabere cca {{respObject[x].cas.name}} minuty.</p>
+         <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 4" >Tento krok vám zabere cca {{respObject[x].cas.name}} minut.</p>
+        <br>
+
+        <p>{{respObject[x].postup}}</p>
+         
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </mat-step></div>
