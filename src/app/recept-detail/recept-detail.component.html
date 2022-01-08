@@ -76,6 +76,7 @@
       <br><br>
       <div style="margin-left: 20px;margin-right: 20px;position: relative; ">
         <div class="poznamka mat-subheading-2">
+          <p><b>Suroviny, které budete potřebovat:</b></p>
           <p style="transform: translateY(0%);">{{item.suroviny}}</p>
         </div></div>
         <br><br>
@@ -85,7 +86,7 @@
       <mat-grid-tile>4</mat-grid-tile>-->
     
    
-    
+    <p style="padding-left: 28px; font-size: 18px;"><b>Interaktivní postup:</b></p>
     <mat-stepper #stepper [orientation]="(stepperOrientation | async)!" *ngIf="krokyToArray(item.kroky) as respObject"> 
       <ng-template matStepperIcon="edit"><mat-icon>done</mat-icon></ng-template>
 

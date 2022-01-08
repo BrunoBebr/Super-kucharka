@@ -1,12 +1,15 @@
 <mat-toolbar color="primary">
   <img src="https://i.pinimg.com/originals/e8/91/4e/e8914ecfbad4ae0144f168663d89a3cd.jpg" style="background-size: cover;  width: 50px; padding: 5px; border-radius: 50%;">
   <span>Kuchařka pro tlouštíky</span>
+  <input class="inputik" type="text" placeholder="Zadejte hledaný výraz">
   <span class="right"><mat-icon (click)="scroll(share)">share</mat-icon></span>
-  
+
 </mat-toolbar>
 
 
 <router-outlet></router-outlet>
+
+
 
 <div id="footer">
   
@@ -24,6 +27,7 @@
     <p class="mat-title text-center" [routerLink]="['/onas']">O nás</p>
     <p class="mat-h4 text-center">Vznik webu</p>
     <p class="mat-h4 text-center">Náš tým</p>
+    <p class="mat-h4 text-center">Co je to hodnocení a jak hodnotit?</p>
   </div>
  
  
