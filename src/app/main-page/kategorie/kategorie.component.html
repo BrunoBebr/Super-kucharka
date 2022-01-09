@@ -8,9 +8,9 @@
   </mat-expansion-panel-header>
 
 
-  
+  <form let f="ngForm" [formGroup]="filtr" >
       <mat-form-field appearance="outline" style="width: 50%;">
-        <mat-select placeholder="Obtížnost" >
+        <mat-select placeholder="Obtížnost" formControlName="skill">
           <mat-option>-Nevybráno-</mat-option>
           <mat-option value="Začátečník">Začátečník</mat-option>
           <mat-option value="Mírně pokročilý">Mírně pokročilý</mat-option>
@@ -20,7 +20,7 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field appearance="outline" style="width: 50%;">
-      <mat-select placeholder="Časová náročnost" >
+      <mat-select placeholder="Časová náročnost" formControlName="cas_pripravy">
         <mat-option>Bez časového omezení</mat-option>
         <mat-option value="10">do 10 min</mat-option>
         <mat-option value="20">do 20 min</mat-option>
@@ -33,21 +33,23 @@
         
       </mat-select>
   </mat-form-field>
-  <mat-form-field appearance="outline" style="width: 50%;">
-    <mat-select placeholder="Hodnocení">
+  <mat-form-field appearance="outline" style="width: 100%;">
+    <mat-select placeholder="Hodnocení" formControlName="hodnoceni">
       <mat-option>Bez omezení</mat-option>
-      <mat-option value="360">více než 0 upvotes</mat-option>
-      <mat-option value="10">více než 5 upvotes</mat-option>
-      <mat-option value="20">více než 10 upvotes</mat-option>
-      <mat-option value="30">více než 20 upvotes</mat-option>
-      <mat-option value="60">více než 50 upvotes</mat-option>
-      <mat-option value="120">více než 100 upvotes</mat-option>
-      <mat-option value="180">více než 500 upvotes</mat-option>
-      <mat-option value="240">více než 1000 upvotes</mat-option>
+      <mat-option value="0">více než 0 upvotes</mat-option>
+      <mat-option value="5">více než 5 upvotes</mat-option>
+      <mat-option value="10">více než 10 upvotes</mat-option>
+      <mat-option value="20">více než 20 upvotes</mat-option>
+      <mat-option value="50">více než 50 upvotes</mat-option>
+      <mat-option value="100">více než 100 upvotes</mat-option>
+      <mat-option value="500">více než 500 upvotes</mat-option>
+      <mat-option value="1000">více než 1000 upvotes</mat-option>
       
       
     </mat-select>
 </mat-form-field>
+<button mat-flat-button type="submit" color="primary" (click)="filtrSearch(filtr)">Vyhledat</button>
+   </form>
    
 
 

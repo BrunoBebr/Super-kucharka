@@ -35,6 +35,7 @@ import { ShareButtonsPopupModule } from 'ngx-sharebuttons/popup';
 import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareModule } from 'ngx-sharebuttons';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoceni.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     KategorieComponent,
     ReceptDetailComponent,
     OnasComponent,
-    HodnoceniDialog
+    HodnoceniDialog,
+    NapovedaHodnoceniComponent
   ],
   imports: [
     BrowserModule,

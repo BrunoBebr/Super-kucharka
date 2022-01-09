@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
 import { ReceptAddComponent } from './main-page/recept-add/recept-add.component';
+import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoceni.component';
 import { OnasComponent } from './onas/onas.component';
 import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: "recept/:id", component: ReceptDetailComponent},
   {path: "hledat/:params", component: MainPageComponent},
   {path: "onas", component: OnasComponent},
+  {path: "hodnoceni", component: NapovedaHodnoceniComponent},
 ];
 
 @NgModule({

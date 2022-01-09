@@ -12,7 +12,7 @@ import { ReceptyService } from '../../service/recepty.service';
 export class ReceptCardComponent implements OnInit {
   title = 'Super-kucharka';
 
-
+  params:any;
   public skill?: string;
   recepty: Recepty[] = [];
   error = '';
@@ -25,7 +25,16 @@ export class ReceptCardComponent implements OnInit {
   }
         
   async ngOnInit():Promise<void> {
-    this.getRecepty();
+    this.params=this.activatedRoute.snapshot.paramMap.get("params");
+    if(this.params){
+      var values = JSON.parse(this.params);
+
+      if(values.skill || values.cas_pripravy|| values.hodnoceni){
+        
+      console.log(this.params);
+    }}else{
+
+      this.getRecepty();
 
     this.load = true;
       if(this.uploaded = true){
@@ -35,10 +44,13 @@ export class ReceptCardComponent implements OnInit {
           this.uploadMessage = false;
           
         });
+    }
+
+    
       }
-      this.activatedRoute.params.subscribe(paramsId => {
+     /* this.activatedRoute.params.subscribe(paramsId => {
         this.skill = paramsId.skill;
-      });
+      });*/
       
     
     

@@ -1,5 +1,12 @@
 <mat-tab-group mat-stretch-tabs>
-    <mat-tab label="Všechny recepty">
+    <mat-tab *ngIf="allRecept" label="Všechny recepty">
+      <app-kategorie></app-kategorie>
+     <!-- <span style="position: relative; top: 50%; left: 50%;"><mat-spinner></mat-spinner></span>-->
+      <app-recept-card></app-recept-card>
+    </mat-tab>
+    
+
+    <mat-tab *ngIf="filtrRecept" label="Recepty podle zadaného filtru">
       <app-kategorie></app-kategorie>
      <!-- <span style="position: relative; top: 50%; left: 50%;"><mat-spinner></mat-spinner></span>-->
       <app-recept-card></app-recept-card></mat-tab>
