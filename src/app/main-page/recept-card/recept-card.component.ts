@@ -6,6 +6,7 @@ import { Recepty } from '../../interface';
 import { ReceptyService } from '../../service/recepty.service';
 import {MatTableDataSource} from '@angular/material/table'
 import { Observable } from 'rxjs';
+import {Location} from '@angular/common';
 
 
 @Component({
@@ -27,6 +28,10 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
   load = false;
   uploaded = false;
   uploadMessage= false;
+
+  hodnoceni= "";
+  cas_pripravy="";
+  obtiznost="";
   
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -36,7 +41,7 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
 
   
         
-  constructor(private receptyService: ReceptyService, public dialog: MatDialog, private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private receptyService: ReceptyService, private _location: Location, public dialog: MatDialog, private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {
   }
         
   async ngOnInit():Promise<void> {
@@ -48,9 +53,11 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
       var values = JSON.parse(this.params);
 
       if(values.skill || values.cas_pripravy|| values.hodnoceni){
-        
-      console.log(this.params);
-      this.getFilteredRecepty(this.params);
+        this.obtiznost = values.skill;
+        this.cas_pripravy = values.cas_pripravy;
+        this.hodnoceni = values.hodnoceni;
+        console.log(this.params);
+        this.getFilteredRecepty(this.params);
     }}else{
         this.getRecepty();
 
@@ -111,7 +118,7 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
         this.changeDetectorRef.detectChanges();
             this.dataSource.paginator = this.paginator;
             this.obs = this.dataSource.connect();
-            
+
       },
       (err) => {
         console.log(err);
@@ -135,6 +142,9 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
     if (this.dataSource) { 
       this.dataSource.disconnect(); 
     }
+  }
+  lastPage() {
+    this._location.back();
   }
 
 }
