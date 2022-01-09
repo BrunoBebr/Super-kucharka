@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { Recepty } from '../../interface';
 import { ReceptyService } from '../../service/recepty.service';
-
+import {MatTableDataSource} from '@angular/material/table'
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -11,7 +13,10 @@ import { ReceptyService } from '../../service/recepty.service';
   templateUrl: './recept-card.component.html',
   styleUrls: ['./recept-card.component.scss']
 })
-export class ReceptCardComponent implements OnInit {
+
+
+export class ReceptCardComponent implements OnInit,OnDestroy {
+  
   title = 'Super-kucharka';
 
   params:any;
@@ -22,11 +27,22 @@ export class ReceptCardComponent implements OnInit {
   load = false;
   uploaded = false;
   uploadMessage= false;
+  
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  obs!: Observable<any>;
+  dataSource: MatTableDataSource<Recepty> | undefined;
+
+
+  
         
-  constructor(private receptyService: ReceptyService, public dialog: MatDialog, private activatedRoute: ActivatedRoute) {
+  constructor(private receptyService: ReceptyService, public dialog: MatDialog, private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef) {
   }
         
   async ngOnInit():Promise<void> {
+
+    
+
     this.params=this.activatedRoute.snapshot.paramMap.get("params");
     if(this.params){
       var values = JSON.parse(this.params);
@@ -40,6 +56,10 @@ export class ReceptCardComponent implements OnInit {
 
         this.load = true;
           if(this.uploaded = true){
+            
+
+            
+
             this.uploadMessage = true;
             this.delay(300).then(any=>{
               this.load = false;
@@ -66,6 +86,12 @@ export class ReceptCardComponent implements OnInit {
         this.recepty = data;
         this.success = 'successful retrieval of the list';
         this.uploaded = true;
+        this.dataSource = new MatTableDataSource<Recepty>(data);
+
+        this.changeDetectorRef.detectChanges();
+            this.dataSource.paginator = this.paginator;
+            this.obs = this.dataSource.connect();
+            
       },
       (err) => {
         console.log(err);
@@ -97,6 +123,13 @@ export class ReceptCardComponent implements OnInit {
   loadingSpinner(){
     
   }
+
+  ngOnDestroy() {
+    if (this.dataSource) { 
+      this.dataSource.disconnect(); 
+    }
+  }
+
 }
 
 @Component({
