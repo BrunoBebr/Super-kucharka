@@ -36,7 +36,13 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareModule } from 'ngx-sharebuttons';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoceni.component';
+<<<<<<< HEAD
 import { ZebrickyComponent } from './main-page/zebricky/zebricky.component';
+=======
+import { NapovedaReceptComponent } from './napoveda-recept/napoveda-recept.component';
+import { PravidlaComponent } from './pravidla/pravidla.component';
+import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.component';
+>>>>>>> c73c590c46e149e6af8ad784a49fb009d2f13d88
 
 
 @NgModule({
@@ -50,8 +56,14 @@ import { ZebrickyComponent } from './main-page/zebricky/zebricky.component';
     OnasComponent,
     HodnoceniDialog,
     NapovedaHodnoceniComponent,
+<<<<<<< HEAD
     ZebrickyComponent,
     VytvoreniReceptuDialog
+=======
+    NapovedaReceptComponent,
+    PravidlaComponent,
+    NapovedaPostupComponent
+>>>>>>> c73c590c46e149e6af8ad784a49fb009d2f13d88
   ],
   imports: [
     BrowserModule,
