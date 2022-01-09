@@ -91,7 +91,7 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
         this.changeDetectorRef.detectChanges();
             this.dataSource.paginator = this.paginator;
             this.obs = this.dataSource.connect();
-            
+
       },
       (err) => {
         console.log(err);
@@ -105,6 +105,13 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
         this.recepty = data;
         this.success = 'successful retrieval of the list';
         this.uploaded = true;
+
+        this.dataSource = new MatTableDataSource<Recepty>(data);
+
+        this.changeDetectorRef.detectChanges();
+            this.dataSource.paginator = this.paginator;
+            this.obs = this.dataSource.connect();
+            
       },
       (err) => {
         console.log(err);
