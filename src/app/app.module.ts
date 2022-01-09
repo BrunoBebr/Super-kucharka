@@ -36,6 +36,9 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareModule } from 'ngx-sharebuttons';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoceni.component';
+import { NapovedaReceptComponent } from './napoveda-recept/napoveda-recept.component';
+import { PravidlaComponent } from './pravidla/pravidla.component';
+import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.component';
 
 
 @NgModule({
@@ -48,7 +51,10 @@ import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoc
     ReceptDetailComponent,
     OnasComponent,
     HodnoceniDialog,
-    NapovedaHodnoceniComponent
+    NapovedaHodnoceniComponent,
+    NapovedaReceptComponent,
+    PravidlaComponent,
+    NapovedaPostupComponent
   ],
   imports: [
     BrowserModule,

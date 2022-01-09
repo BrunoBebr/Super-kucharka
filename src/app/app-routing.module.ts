@@ -3,6 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
 import { ReceptAddComponent } from './main-page/recept-add/recept-add.component';
 import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoceni.component';
+import { NapovedaReceptComponent } from './napoveda-recept/napoveda-recept.component';
+import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.component';
+import { PravidlaComponent } from './pravidla/pravidla.component';
 import { OnasComponent } from './onas/onas.component';
 import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
 
@@ -14,6 +17,9 @@ const routes: Routes = [
   {path: "hledat/:params", component: MainPageComponent},
   {path: "onas", component: OnasComponent},
   {path: "hodnoceni", component: NapovedaHodnoceniComponent},
+  {path: "Jak vytvořit recept", component: NapovedaReceptComponent},
+  {path: "Interaktivní postup", component: NapovedaPostupComponent},
+  {path: "Pravidla vytváření receptu", component: PravidlaComponent},
 ];
 
 @NgModule({

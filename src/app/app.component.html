@@ -25,9 +25,10 @@
 
   <div id="help">
     <p class="mat-title text-center" >Nápověda</p>
-    <p class="mat-h4 text-center">Jak vytvořit recept</p>
+    <p class="mat-h4 text-center" [routerLink]="['/Pravidla vytváření receptu']">Pravidla vytváření receptu</p>
+    <p class="mat-h4 text-center" [routerLink]="['/Jak vytvořit recept']">Jak vytvořit recept</p>
     <p class="mat-h4 text-center" [routerLink]="['/hodnoceni']">Hodnocení</p>
-    <p class="mat-h4 text-center" >Interaktivní postup</p>
+    <p class="mat-h4 text-center" [routerLink]="['/Interaktivní postup']">Interaktivní postup</p>
   </div>
 
   
@@ -42,9 +43,9 @@
   </div>
 
   <div id="ctenicko">
-    <p class="mat-title text-center" [routerLink]="['/onas']">O nás</p>
+    <p class="mat-title text-center">O nás</p>
     <p class="mat-h4 text-center">Vznik webu</p>
-    <p class="mat-h4 text-center">Náš tým</p>
+    <p class="mat-h4 text-center" [routerLink]="['/onas']">Náš tým</p>
     
   </div>
  
