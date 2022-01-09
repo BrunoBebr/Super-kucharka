@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Recepty } from './interface';
 import { ReceptyService } from './service/recepty.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

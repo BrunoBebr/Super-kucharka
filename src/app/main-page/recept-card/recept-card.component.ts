@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Recepty } from '../../interface';
 import { ReceptyService } from '../../service/recepty.service';
 
+
+
 @Component({
   selector: 'app-recept-card',
   templateUrl: './recept-card.component.html',
