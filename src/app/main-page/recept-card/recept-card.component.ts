@@ -167,3 +167,10 @@ export class HodnoceniDialog {}
 })
 export class VytvoreniReceptuDialog {}
 
+@Component({
+  selector: 'pravidla-vytvoreni-receptu-dialog',
+  templateUrl: '../../dialogs/pravidla-vytvoreni-receptu.html',
+  
+})
+export class PravidlaVytvoreniReceptuDialog {}
+

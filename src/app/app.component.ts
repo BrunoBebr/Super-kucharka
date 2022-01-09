@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Recepty } from './interface';
-import { HodnoceniDialog, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
+import { HodnoceniDialog, PravidlaVytvoreniReceptuDialog, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
 import { ReceptyService } from './service/recepty.service';
 
 
@@ -31,7 +31,9 @@ export class AppComponent implements OnInit{
 openVytvoritReceptDialog() {
   this.dialog.open(VytvoreniReceptuDialog);
 }
-
+openPravidlaVytvoritReceptDialog() {
+  this.dialog.open(PravidlaVytvoreniReceptuDialog);
+}
  
   scroll(el: HTMLElement) {
     el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
