@@ -90,7 +90,7 @@
     <mat-stepper #stepper [orientation]="(stepperOrientation | async)!" *ngIf="krokyToArray(item.kroky) as respObject"> 
       <ng-template matStepperIcon="edit"><mat-icon>done</mat-icon></ng-template>
 
-      <div *ngFor="let i of Arr(num).fill(1); let x = index" >
+      <div *ngFor="let i of Arr(num).fill(1); let x = index; " >
         
         <mat-step label="{{respObject[x].nazev}}">
           <br>
@@ -107,7 +107,7 @@
         <p>{{respObject[x].postup}}</p>
          
         <button *ngIf="x+1 > 1" mat-button matStepperPrevious>Zpět</button>
-        <button *ngIf="x <= i" mat-button matStepperNext>Další</button>
+        <button *ngIf="respObject.length > x+1" mat-button matStepperNext>Další</button>
       </mat-step></div>
       
       

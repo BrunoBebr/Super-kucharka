@@ -1,3 +1,13 @@
+<div *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !=''" [routerLink]="['']" style="position: absolute;
+left: 40px; top: 55px;">
+<mat-icon style=" font-size: 20px">arrow_back_ios</mat-icon>Odstranit filtr</div>
+
+<p *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !=''" class="center filtrtext">Aktuální filtr <span *ngIf="obtiznost !=''">| Obtížnost - {{obtiznost}}&nbsp;</span>
+                    <span *ngIf="cas_pripravy !=''">| Časová náročnost - do {{cas_pripravy}} minut&nbsp;</span>
+                    <span *ngIf="hodnoceni !=''">| Hodnocení - min {{hodnoceni}} upvotes&nbsp;</span>
+                  </p>
+
+
 <div class="center">
 <mat-card class="card" *ngFor="let item of obs | async">
     <mat-card-header>
@@ -21,7 +31,7 @@
 </div>
 
 
-<mat-paginator [length]="100"
+<mat-paginator 
               [pageSize]="6"
               [pageSizeOptions]="[6, 9, 18, 36]"
               aria-label="Select page">
