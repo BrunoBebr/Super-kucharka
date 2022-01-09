@@ -32,18 +32,18 @@ export class ReceptCardComponent implements OnInit {
       if(values.skill || values.cas_pripravy|| values.hodnoceni){
         
       console.log(this.params);
+      this.getFilteredRecepty(this.params);
     }}else{
+        this.getRecepty();
 
-      this.getRecepty();
-
-    this.load = true;
-      if(this.uploaded = true){
-        this.uploadMessage = true;
-        this.delay(300).then(any=>{
-          this.load = false;
-          this.uploadMessage = false;
-          
-        });
+        this.load = true;
+          if(this.uploaded = true){
+            this.uploadMessage = true;
+            this.delay(300).then(any=>{
+              this.load = false;
+              this.uploadMessage = false;
+              
+            });
     }
 
     
@@ -60,6 +60,19 @@ export class ReceptCardComponent implements OnInit {
         
   getRecepty(): void {
     this.receptyService.getAll().subscribe(
+      (data: Recepty[]) => {
+        this.recepty = data;
+        this.success = 'successful retrieval of the list';
+        this.uploaded = true;
+      },
+      (err) => {
+        console.log(err);
+        this.error = err;
+      }
+    );
+  }
+  getFilteredRecepty(params:any): void {
+    this.receptyService.getFiltr(params).subscribe(
       (data: Recepty[]) => {
         this.recepty = data;
         this.success = 'successful retrieval of the list';
