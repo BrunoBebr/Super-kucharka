@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Recepty } from './interface';
+import { HodnoceniDialog, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
 import { ReceptyService } from './service/recepty.service';
 
 
@@ -16,27 +18,23 @@ export class AppComponent implements OnInit{
   error = '';
   success = '';
         
-  constructor(private receptyService: ReceptyService) {
+  constructor(private receptyService: ReceptyService,public dialog: MatDialog) {
   }
         
   ngOnInit() {
-    this.getRecepty();
+
   }
         
-  getRecepty(): void {
-    this.receptyService.getAll().subscribe(
-      (data: Recepty[]) => {
-        this.recepty = data;
-        this.success = 'successful retrieval of the list';
-      },
-      (err) => {
-        console.log(err);
-        this.error = err;
-      }
-    );
-  }
+ openDialogHodnoceni() {
+  this.dialog.open(HodnoceniDialog);
+}
+openVytvoritReceptDialog() {
+  this.dialog.open(VytvoreniReceptuDialog);
+}
+
  
   scroll(el: HTMLElement) {
     el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 }
+

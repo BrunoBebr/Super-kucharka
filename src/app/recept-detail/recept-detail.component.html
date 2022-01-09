@@ -108,6 +108,7 @@
          
         <button *ngIf="x+1 > 1" mat-button matStepperPrevious>Zpět</button>
         <button *ngIf="respObject.length > x+1" mat-button matStepperNext>Další</button>
+        <button *ngIf="respObject.length == x+1" mat-button color="primary" >Ohodnotit recept</button>
       </mat-step></div>
       
       

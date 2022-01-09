@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Component, EventEmitter } from '@angular/core';
 import {MatChipsModule} from '@angular/material/chips';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
-import { HodnoceniDialog, ReceptCardComponent } from './main-page/recept-card/recept-card.component';
+import { HodnoceniDialog, ReceptCardComponent, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
 import { ReceptAddComponent } from './main-page/recept-add/recept-add.component';
 import { KategorieComponent } from './main-page/kategorie/kategorie.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -36,6 +36,7 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { ShareModule } from 'ngx-sharebuttons';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoceni.component';
+import { ZebrickyComponent } from './main-page/zebricky/zebricky.component';
 
 
 @NgModule({
@@ -48,7 +49,9 @@ import { NapovedaHodnoceniComponent } from './napoveda-hodnoceni/napoveda-hodnoc
     ReceptDetailComponent,
     OnasComponent,
     HodnoceniDialog,
-    NapovedaHodnoceniComponent
+    NapovedaHodnoceniComponent,
+    ZebrickyComponent,
+    VytvoreniReceptuDialog
   ],
   imports: [
     BrowserModule,

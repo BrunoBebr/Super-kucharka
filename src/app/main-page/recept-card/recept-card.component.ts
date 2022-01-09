@@ -129,6 +129,9 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
   openDialog() {
     this.dialog.open(HodnoceniDialog);
   }
+  openVytvoritReceptDialog() {
+    this.dialog.open(VytvoreniReceptuDialog);
+  }
 
   async delay(ms: number) {
     await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then();
@@ -151,7 +154,16 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
 
 @Component({
   selector: 'hodnoceni-dialog',
-  templateUrl: 'hodnoceni-dialog.html',
+  templateUrl: '../../dialogs/hodnoceni-dialog.html',
+  
 })
 export class HodnoceniDialog {}
+
+
+@Component({
+  selector: 'vytvoreni-receptu-dialog',
+  templateUrl: '../../dialogs/vytvoreni-receptu-dialog.html',
+  
+})
+export class VytvoreniReceptuDialog {}
 
