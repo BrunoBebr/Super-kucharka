@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: "", component: MainPageComponent},
   {path: "recepty/novy", component: ReceptAddComponent},
   {path: "recept/:id", component: ReceptDetailComponent},
-  {path: "onas", component: OnasComponent}
+  {path: "hledat/:params", component: MainPageComponent},
+  {path: "onas", component: OnasComponent},
 ];
 
 @NgModule({

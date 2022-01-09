@@ -1,13 +1,13 @@
 <mat-toolbar color="primary">
-  <img src="https://i.pinimg.com/originals/e8/91/4e/e8914ecfbad4ae0144f168663d89a3cd.jpg" style="background-size: cover;  width: 50px; padding: 5px; border-radius: 50%;">
-  <span>Kuchařka pro tlouštíky</span>
-  <span class="searchbar"><mat-icon>search</mat-icon><input matInput placeholder="Vyhledávání" style="
+  <img [routerLink]="['']" src="../assets\images\android-chrome-512x512.png" style="background-size: cover;  width: 50px; padding: 5px; border-radius: 10px;" class="focus-in-expand">
+  <span [routerLink]="['']" class="focus-in-expand">Kuchařka pro tlouštíky</span>
+  <span class="searchbar jello-horizontal"><mat-icon>search</mat-icon><input matInput placeholder="Vyhledávání" style="
     width: 95%;
     height: 50%;
     margin: 0 auto;
     transform: translateY(-35%);
 "></span>
-  <span class="right"> <mat-icon (click)="scroll(share)">share</mat-icon></span>
+  <span class="right jello-horizontal"> <mat-icon (click)="scroll(share)">share</mat-icon></span>
   
   <!--<span class="right"><mat-icon (click)="scroll(share)">share</mat-icon></span>
   <input class="inputik" type="text" placeholder="Zadejte hledaný výraz">
@@ -23,6 +23,14 @@
 <div id="footer">
   
 
+  <div id="help">
+    <p class="mat-title text-center" [routerLink]="['/onas']">Nápověda</p>
+    
+    <p class="mat-h4 text-center">Co je to hodnocení a jak hodnotit?</p>
+  </div>
+
+  
+  
   <div id="kontakty">
     <p class="mat-title text-center">Kontakty<i class="fab fa-facebook-f" size="2em"></i></p>
     
@@ -36,7 +44,7 @@
     <p class="mat-title text-center" [routerLink]="['/onas']">O nás</p>
     <p class="mat-h4 text-center">Vznik webu</p>
     <p class="mat-h4 text-center">Náš tým</p>
-    <p class="mat-h4 text-center">Co je to hodnocení a jak hodnotit?</p>
+    
   </div>
  
  

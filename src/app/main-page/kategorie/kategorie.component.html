@@ -6,7 +6,54 @@
       Filtrování
     </mat-panel-description>
   </mat-expansion-panel-header>
+
+
   
+      <mat-form-field appearance="outline" style="width: 50%;">
+        <mat-select placeholder="Obtížnost" >
+          <mat-option>-Nevybráno-</mat-option>
+          <mat-option value="Začátečník">Začátečník</mat-option>
+          <mat-option value="Mírně pokročilý">Mírně pokročilý</mat-option>
+          <mat-option value="Středně pokročilý">Středně pokročilý</mat-option>
+          <mat-option value="Pokročilý">Pokročilý</mat-option>
+          <mat-option value="Profi">Profi</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 50%;">
+      <mat-select placeholder="Časová náročnost" >
+        <mat-option>Bez časového omezení</mat-option>
+        <mat-option value="10">do 10 min</mat-option>
+        <mat-option value="20">do 20 min</mat-option>
+        <mat-option value="30">do 30 min</mat-option>
+        <mat-option value="60">do 60 min</mat-option>
+        <mat-option value="120">do 120 min</mat-option>
+        <mat-option value="180">do 180 min</mat-option>
+        <mat-option value="240">do 240 min</mat-option>
+        <mat-option value="360">do 360 min</mat-option>
+        
+      </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" style="width: 50%;">
+    <mat-select placeholder="Hodnocení">
+      <mat-option>Bez omezení</mat-option>
+      <mat-option value="360">více než 0 upvotes</mat-option>
+      <mat-option value="10">více než 5 upvotes</mat-option>
+      <mat-option value="20">více než 10 upvotes</mat-option>
+      <mat-option value="30">více než 20 upvotes</mat-option>
+      <mat-option value="60">více než 50 upvotes</mat-option>
+      <mat-option value="120">více než 100 upvotes</mat-option>
+      <mat-option value="180">více než 500 upvotes</mat-option>
+      <mat-option value="240">více než 1000 upvotes</mat-option>
+      
+      
+    </mat-select>
+</mat-form-field>
+   
+
+
+  
+
+  <!--
   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle matTreeNodePadding>
       <button mat-icon-button disabled></button>
@@ -31,6 +78,6 @@
                     (change)="todoItemSelectionToggle(node)">{{node.item}}</mat-checkbox>
       
     </mat-tree-node>
-  </mat-tree>
+  </mat-tree>-->
   
 </mat-expansion-panel>

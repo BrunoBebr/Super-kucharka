@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { Recepty } from '../../interface';
 import { ReceptyService } from '../../service/recepty.service';
 
@@ -11,6 +12,8 @@ import { ReceptyService } from '../../service/recepty.service';
 export class ReceptCardComponent implements OnInit {
   title = 'Super-kucharka';
 
+
+  public skill?: string;
   recepty: Recepty[] = [];
   error = '';
   success = '';
@@ -18,10 +21,10 @@ export class ReceptCardComponent implements OnInit {
   uploaded = false;
   uploadMessage= false;
         
-  constructor(private receptyService: ReceptyService, public dialog: MatDialog) {
+  constructor(private receptyService: ReceptyService, public dialog: MatDialog, private activatedRoute: ActivatedRoute) {
   }
         
-  ngOnInit() {
+  async ngOnInit():Promise<void> {
     this.getRecepty();
 
     this.load = true;
@@ -33,10 +36,15 @@ export class ReceptCardComponent implements OnInit {
           
         });
       }
+      this.activatedRoute.params.subscribe(paramsId => {
+        this.skill = paramsId.skill;
+      });
       
     
     
   }
+   
+    
         
   getRecepty(): void {
     this.receptyService.getAll().subscribe(
