@@ -8,6 +8,7 @@ import { Recepty } from 'src/app/interface';
 import { ReceptyService } from 'src/app/service/recepty.service';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 
 export interface User {
@@ -29,6 +30,7 @@ export interface Time {
   ],
 })
 export class ReceptAddComponent implements OnInit {
+  urllink:string ="assets/images/food-example.png"
   receptAddForm!: FormGroup;
 
   recepty: Recepty[] = [];
@@ -64,6 +66,7 @@ export class ReceptAddComponent implements OnInit {
         'nazev': new FormControl("", Validators.required),
         'autor': new FormControl("", Validators.required),
         'obrazek': new FormControl(""),
+        'imageData': new FormControl(""),
         'suroviny': new FormControl("", [Validators.required, Validators.maxLength(1800),]),
         'note': new FormControl("", [Validators.minLength(70),Validators.maxLength(700), Validators.required ]),
         'skill': new FormControl("", Validators.required), 
@@ -188,10 +191,32 @@ getRecepty(): void {
   );
 }
 
+loadingSpinner(){
+  this.load = true;
+  this.delay(3000).then(any=>{
+    if(this.uploaded = true){
+      this.uploadMessage = true;
+      this.delay(1000).then(any=>{
+        this.load = false;
+        this.uploadMessage = false;
+        window.location.reload();
+        this.receptAddForm.reset();
+      });
+    }
+    
+  });
+  
+}
+
 addRecept(receptAddForm: FormGroup) {
   this.resetAlerts();
-  this.loadingSpinner();
+  this.loadingSpinner(); 
+  
+  var imageData = this.receptAddForm.get('zakladniUdaje.imageData')?.value;
+   this.imageUpload(imageData);
 
+   
+  this.load = true;
 //console.log("SEND " + JSON.stringify(receptAddForm.value));
   this.receptyService.store(receptAddForm.value).subscribe(
     
@@ -202,26 +227,57 @@ addRecept(receptAddForm: FormGroup) {
       // Inform the user
       this.success = 'Created successfully';
       this.uploaded = true;
+      
+     
+
+     
+      
+       
+        
+      
       // Reset the form
-      receptAddForm.reset();
+      
     },
     (err) => (this.error = err.message)
   );
 }
-loadingSpinner(){
-  this.load = true;
-  this.delay(3000).then(any=>{
-    if(this.uploaded = true){
-      this.uploadMessage = true;
-      this.delay(1000).then(any=>{
-        this.load = false;
-        this.uploadMessage = false;
-        window.location.reload();
-      });
-    }
+imageUpload(image: File) {
+  this.resetAlerts();
+
+//console.log("SEND " + JSON.stringify(receptAddForm.value));
+  this.receptyService.setImage(image).subscribe(
     
-  });
-  
+    (res: Recepty) => {
+      // Update the list of cars
+      this.recepty.push(res)
+      //console.log("SENT " + JSON.stringify(receptAddForm.value));
+      // Inform the user
+      this.success = 'Created successfully';
+      this.uploaded = true;
+        
+    },
+    (err) => (this.error = err.message)
+  );
+}
+
+
+selectFile(event:any){
+  if(event.target.files){
+    var reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (e:any)=>{
+      this.urllink = e.target.result
+    }
+  }
+}
+onSelectedFile(event:any){
+  console.log(event.target.files.length);
+  if(event.target.files.length > 0){
+    const file = event.target.files[0];
+    console.log( file.name);
+    this.receptAddForm.get('zakladniUdaje.obrazek')!.setValue(file.name);
+    this.receptAddForm.get('zakladniUdaje.imageData')!.setValue(file);
+  }
 }
 
 resetAlerts() {
@@ -231,6 +287,7 @@ resetAlerts() {
 submitted = false;
 
 onSubmit() { this.submitted = true; }
+
 
 
 

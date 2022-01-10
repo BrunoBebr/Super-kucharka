@@ -8,7 +8,7 @@
   </mat-expansion-panel-header>
 
 
-  <form let f="ngForm" [formGroup]="filtr" >
+  <form #myForm="ngForm" (ngSubmit)="filtrSearch(filtr)" [formGroup]="filtr" >
       <mat-form-field appearance="outline" style="width: 50%;">
         <mat-select placeholder="Obtížnost" formControlName="skill">
           <mat-option>-Nevybráno-</mat-option>
