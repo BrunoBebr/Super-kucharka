@@ -174,3 +174,10 @@ export class VytvoreniReceptuDialog {}
 })
 export class PravidlaVytvoreniReceptuDialog {}
 
+@Component({
+  selector: 'interaktivni-postup-dialog',
+  templateUrl: '../../dialogs/interaktivni-postup-dialog.html',
+  
+})
+export class InteraktivniPostupDialog {}
+

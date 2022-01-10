@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Recepty } from './interface';
-import { HodnoceniDialog, PravidlaVytvoreniReceptuDialog, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
+import { HodnoceniDialog, InteraktivniPostupDialog, PravidlaVytvoreniReceptuDialog, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
 import { ReceptyService } from './service/recepty.service';
 
 
@@ -31,6 +31,11 @@ export class AppComponent implements OnInit{
 openVytvoritReceptDialog() {
   this.dialog.open(VytvoreniReceptuDialog);
 }
+
+openInteraktivniReceptDialog() {
+  this.dialog.open(InteraktivniPostupDialog);
+}
+
 openPravidlaVytvoritReceptDialog() {
   this.dialog.open(PravidlaVytvoreniReceptuDialog);
 }
