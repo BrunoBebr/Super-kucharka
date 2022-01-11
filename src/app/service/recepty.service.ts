@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { DeatilRecept, Recepty } from '../interface';
 import { Data } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -48,4 +49,13 @@ baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty';
       })
     );
   }
+
+  setImage(image: File) {
+    return this.http.post(`${this.baseUrl}/upload-image.php`, { data: image }).pipe(
+      map((res: any) => {
+        return res['data'];
+      })
+    );
+  }
+  
 }
