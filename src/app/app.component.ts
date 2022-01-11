@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Recepty } from './interface';
 import { HodnoceniDialog, InteraktivniPostupDialog, PravidlaVytvoreniReceptuDialog, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
 import { ReceptyService } from './service/recepty.service';
@@ -14,16 +15,32 @@ import { ReceptyService } from './service/recepty.service';
 export class AppComponent implements OnInit{
   title = 'Super kuchařka';
 
+  vyhledat!: FormGroup;
   recepty: Recepty[] = [];
   error = '';
   success = '';
         
-  constructor(private receptyService: ReceptyService,public dialog: MatDialog) {
+  constructor(private receptyService: ReceptyService,public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router) {
   }
         
   ngOnInit() {
-
+    this.vyhledat = this._formBuilder.group({
+      'search': [""],
+          
+    });
   }
+
+  filtrVyhledat(data:any){
+    if(data.value.search){
+      var values = JSON.stringify(data.value);
+    console.log(values);
+    
+    this.router.navigate(['/hledat', values]);
+    this.delay(10).then(any=>{
+      
+      window.location.reload();
+    });
+  }}
         
  openDialogHodnoceni() {
   this.dialog.open(HodnoceniDialog);
@@ -42,6 +59,9 @@ openPravidlaVytvoritReceptDialog() {
  
   scroll(el: HTMLElement) {
     el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+  }
+  async delay(ms: number) {
+    await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then();
   }
 }
 

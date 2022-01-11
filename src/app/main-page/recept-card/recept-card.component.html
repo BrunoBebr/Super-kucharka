@@ -1,5 +1,5 @@
-<div *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !=''" [routerLink]="['']" style="position: absolute;
-left: 40px; top: 55px;">
+<div *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !=''" [routerLink]="['']" style="position: relative;
+left: 40px; top: 25px;">
 <mat-icon style=" font-size: 20px">arrow_back_ios</mat-icon>Odstranit filtr</div>
 
 <p *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !=''" class="center filtrtext">Aktuální filtr <span *ngIf="obtiznost !=''">| Obtížnost - {{obtiznost}}&nbsp;</span>

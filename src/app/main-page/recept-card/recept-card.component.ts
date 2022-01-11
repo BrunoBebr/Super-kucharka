@@ -32,7 +32,7 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
   hodnoceni= "";
   cas_pripravy="";
   obtiznost="";
-  
+  search="";
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   obs!: Observable<any>;
@@ -56,9 +56,14 @@ export class ReceptCardComponent implements OnInit,OnDestroy {
         this.obtiznost = values.skill;
         this.cas_pripravy = values.cas_pripravy;
         this.hodnoceni = values.hodnoceni;
-        console.log(this.params);
+      //  console.log(this.params);
         this.getFilteredRecepty(this.params);
-    }}else{
+      }
+      else if(values.search){
+        this.search = values.search;
+        this.getFilteredRecepty(this.params);
+      }  
+    }else{
         this.getRecepty();
 
         this.load = true;

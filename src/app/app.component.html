@@ -1,12 +1,15 @@
 <mat-toolbar color="primary">
   <img [routerLink]="['']" src="../assets\images\Svoboda.png" style="background-size: cover;  width: 50px; padding: 5px; border-radius: 10px;" class="focus-in-expand">
   <span [routerLink]="['']" class="focus-in-expand">Kuchařka pro tlouštíky</span>
-  <span class="searchbar jello-horizontal"><mat-icon>search</mat-icon><input matInput placeholder="Vyhledávání" style="
+  <span class="searchbar jello-horizontal">
+    <form #myForm="ngForm" [formGroup]="vyhledat" (ngSubmit)="filtrVyhledat(vyhledat)">
+    <button type="submit" (click)="filtrVyhledat(vyhledat)" mat-icon-button><mat-icon>search</mat-icon></button>
+    <input matInput placeholder="Vyhledávání" style="
     width: 95%;
     height: 50%;
     margin: 0 auto;
     transform: translateY(-35%);
-"></span>
+" formControlName="search"></form></span>
   <span class="right jello-horizontal"> <mat-icon (click)="scroll(share)">share</mat-icon></span>
   
   <!--<span class="right"><mat-icon (click)="scroll(share)">share</mat-icon></span>
