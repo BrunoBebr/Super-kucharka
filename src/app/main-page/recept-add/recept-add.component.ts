@@ -67,7 +67,7 @@ export class ReceptAddComponent implements OnInit {
         'suroviny': new FormControl("", [Validators.required, Validators.maxLength(1800),]),
         'note': new FormControl("", [Validators.minLength(70),Validators.maxLength(700), Validators.required ]),
         'skill': new FormControl("", Validators.required), 
-        'cas_pripravy': new FormControl("", Validators.required),        
+        'cas_pripravy': new FormControl("", [Validators.required, Validators.maxLength(3)]),        
       }),
      postup: this._formBuilder.array([this.initPostup()])   
     })
