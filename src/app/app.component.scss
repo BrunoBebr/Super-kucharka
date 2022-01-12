@@ -21,19 +21,24 @@
 
 }
 #kontakty{
- width: 33.33%;
  float: left;
-  padding-top: 20px;
+ padding-top: 20px;
+ padding-left: 170px;
  position: relative;
 }
 #ctenicko{
-  width: 33.33%;
   padding-top: 20px;
+  padding-left: 220px;
+  padding-right: 170px;
   float: left;
   position: relative;
 }
+.klik_text{
+  cursor: pointer;
+}
 #help{
-  width: 33.33%;
+  padding-left: 250px;
+  padding-right: 170px;
   padding-top: 20px;
   float: left;
   position: relative;

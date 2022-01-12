@@ -28,10 +28,10 @@
 
   <div id="help">
     <p class="mat-title text-center" >Nápověda</p>
-    <p class="mat-h4 text-center" (click)="openPravidlaVytvoritReceptDialog()">Pravidla vytváření receptu</p>
-    <p class="mat-h4 text-center" (click)="openVytvoritReceptDialog()">Jak vytvořit recept</p>
-    <p class="mat-h4 text-center" (click)="openDialogHodnoceni()">Hodnocení</p>
-    <p class="mat-h4 text-center" (click)="openInteraktivniReceptDialog()">Interaktivní postup</p>
+    <p class="klik_text" (click)="openPravidlaVytvoritReceptDialog()">Pravidla vytváření receptu</p>
+    <p class="klik_text" (click)="openVytvoritReceptDialog()">Jak vytvořit recept</p>
+    <p class="klik_text" (click)="openDialogHodnoceni()">Hodnocení</p>
+    <p class="klik_text" (click)="openInteraktivniReceptDialog()">Interaktivní postup</p>
     
    <!--
     <p class="mat-h4 text-center" [routerLink]="['/Jak vytvořit recept']">Jak vytvořit recept</p>
@@ -41,6 +41,14 @@
 
   
   
+  <div id="ctenicko">
+    <p class="mat-title text-center">Náš tým</p>
+    <p class="klik_text" (click)="openOnasDialog()">O nás</p>
+    <p class="klik_text" (click)="openVznikWebuDialog()">Vznik webu</p>
+    
+  </div>
+
+
   <div id="kontakty">
     <p class="mat-title text-center">Kontakty<i class="fab fa-facebook-f" size="2em"></i></p>
     
@@ -49,14 +57,6 @@
     <p class="mat-h4 text-center">kucharkaprotloustiky@seznam.cz</p>
     
   </div>
-
-  <div id="ctenicko">
-    <p class="mat-title text-center">O nás</p>
-    <p class="mat-h4 text-center">Vznik webu</p>
-    <p class="mat-h4 text-center" [routerLink]="['/onas']">Náš tým</p>
-    
-  </div>
- 
  
   <div id="problem" #share>
     <share-buttons [theme]="'circles-dark'"

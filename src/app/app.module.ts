@@ -16,7 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Component, EventEmitter } from '@angular/core';
 import {MatChipsModule} from '@angular/material/chips';
 import { MainPageComponent } from './main-page/main-page/main-page.component';
-import { HodnoceniDialog, InteraktivniPostupDialog, PravidlaVytvoreniReceptuDialog, ReceptCardComponent, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
+import { HodnoceniDialog, InteraktivniPostupDialog, OnasDialog, PravidlaVytvoreniReceptuDialog, ReceptCardComponent, VytvoreniReceptuDialog, VznikWebuDialog } from './main-page/recept-card/recept-card.component';
 import { ReceptAddComponent } from './main-page/recept-add/recept-add.component';
 import { KategorieComponent } from './main-page/kategorie/kategorie.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -61,6 +61,8 @@ import { DoporuceneComponent } from './main-page/doporucene/doporucene.component
     NapovedaPostupComponent,
     PravidlaVytvoreniReceptuDialog,
     InteraktivniPostupDialog,
+    OnasDialog,
+    VznikWebuDialog,
     DoporuceneComponent
   ],
   imports: [
