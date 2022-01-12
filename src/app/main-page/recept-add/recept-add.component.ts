@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators, } from '@an
 import { MatStepper } from '@angular/material/stepper';
 import {NgForm} from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Recepty } from 'src/app/interface';
+import { HlavniFotka, Recepty } from 'src/app/interface';
 import { ReceptyService } from 'src/app/service/recepty.service';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -37,6 +37,7 @@ export class ReceptAddComponent implements OnInit {
   receptAddForm!: FormGroup;
 
   recepty: Recepty[] = [];
+  fotka: HlavniFotka[] = [];
   error = '';
   success = '';
   load = false;
@@ -44,7 +45,7 @@ export class ReceptAddComponent implements OnInit {
   formGroup!: FormGroup;
   form!: FormArray;
   postup!: any;
-  http: any;
+
   uploaded = false;
   uploadMessage = false;
   
@@ -53,7 +54,7 @@ export class ReceptAddComponent implements OnInit {
 
   //currentStep = 0;
 
-  constructor(private _formBuilder: FormBuilder, private receptyService: ReceptyService, public dialog: MatDialog, private _location: Location) { }
+  constructor(private http: HttpClient, private _formBuilder: FormBuilder, private receptyService: ReceptyService, public dialog: MatDialog, private _location: Location) { }
 
   myControl = new FormControl();
   options: User[] = [{name: "0"}, {name: '1'},{name: '2'},{name: '3'},{name: '4'},{name: '5'},{name: '6'},{name: '7'},{name: '8'},{name: '9'}, {name: '10'},{name: '15'},{name: '20'},{name: '25'},{name: '30'},{name: '35'},{name: '40'},{name: '45'},{name: '50'},{name: '55'},{name: '60'},];
@@ -234,41 +235,21 @@ addRecept(receptAddForm: FormGroup) {
       // Inform the user
       this.success = 'Created successfully';
       this.uploaded = true;
-      
-     
-
-     
-      
-       
-        
-      
+ 
       // Reset the form
       
     },
     (err) => (this.error = err.message)
   );
 }
-imageUpload(image: File) {
-  this.resetAlerts();
-
-//console.log("SEND " + JSON.stringify(receptAddForm.value));
-  this.receptyService.setImage(image).subscribe(
-    
-    (res: Recepty) => {
-      // Update the list of cars
-      this.recepty.push(res)
-      //console.log("SENT " + JSON.stringify(receptAddForm.value));
-      // Inform the user
-      this.success = 'Created successfully';
-      this.uploaded = true;
-        
-    },
-    (err) => (this.error = err.message)
-  );
+imageUpload(image: any) {
+ // console.log(image);
+  
 }
 
 
 selectFile(event:any){
+  
   if(event.target.files){
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -276,15 +257,34 @@ selectFile(event:any){
       this.urllink = e.target.result
     }
   }
+  
 }
 onSelectedFile(event:any){
   console.log(event.target.files.length);
   if(event.target.files.length > 0){
-    const file = event.target.files[0];
-    console.log( file.name);
+    
+    var file:File = event.target.files[0];
+    //console.log( file);
     this.receptAddForm.get('zakladniUdaje.obrazek')!.setValue(file.name);
     this.receptAddForm.get('zakladniUdaje.imageData')!.setValue(file);
+
+    this.receptyService.setImage(file).subscribe(
+    
+      (res: Recepty) => {
+        // Update the list of cars
+        this.recepty.push(res)
+        //console.log("SENT " + JSON.stringify(receptAddForm.value));
+        // Inform the user
+        this.success = 'Created successfully';
+        this.uploaded = true;
+   
+        // Reset the form
+        
+      },
+      (err) => (this.error = err.message)
+    );
   }
+  
 }
 
 resetAlerts() {

@@ -7,8 +7,10 @@ import {Location} from '@angular/common';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {BreakpointObserver} from '@angular/cdk/layout';
 import {StepperOrientation} from '@angular/material/stepper';
-import {Observable} from 'rxjs';
+import {interval, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import { ProgressBarMode } from '@angular/material/progress-bar';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-recept-detail',
@@ -60,7 +62,7 @@ export class ReceptDetailComponent implements OnInit {
         this.recepty = data;
         this.reviews = this.recepty[0]['hodnoceni'];
         
-        console.log(this.recepty);
+       // console.log(this.recepty);
         this.success = 'successful retrieval of the list';
       },
       (err) => {
@@ -83,7 +85,7 @@ export class ReceptDetailComponent implements OnInit {
   krokyToArray(kroky:any){
     
     var objData = JSON.parse(kroky);
-    console.log(objData);
+    //console.log(objData);
      this.postup = objData;
     this.num = objData.length;
     return objData;
@@ -96,4 +98,66 @@ export class ReceptDetailComponent implements OnInit {
   num:number =1;
 
   stepperOrientation: Observable<StepperOrientation>;
+
+  color: ThemePalette = 'primary';
+  mode: ProgressBarMode = 'determinate';
+  value = 100;
+  bufferValue = 75;
+  curSec: number = 0;
+  isEnabled = false;
+  zvoneni = 0;
+  zrusitStopky = 0;
+  audio = new Audio();
+  shouldContinue = true;
+
+  stopky(t:number){
+    this.shouldContinue = true;
+    this.zrusitStopky = 0;
+    const time = t*60;
+    
+    
+    const timer$ = interval(1000);
+
+    const sub = timer$.subscribe((sec) => {
+      if(this.shouldContinue){
+      this.value = 100 - sec * 100 / time;
+      this.curSec = sec;
+      this.isEnabled = true;
+    }else{
+      sub.unsubscribe();
+      return;}
+
+      if (this.curSec === time) {
+        this.zvoneni = 1;
+        this.zapnoutZvoneni();
+        
+       
+
+        sub.unsubscribe();
+      }
+      
+    });
+  }
+ 
+  zapnoutZvoneni(){
+    
+    this.audio.src = "../../../assets/audio/alarm.mp3";
+    this.audio.load();
+    this.audio.play();
+
+  }
+
+  zastavitZvoneni(){
+    this.audio.pause();
+    this.zvoneni = 0;
+    this.value = 100;
+    this.isEnabled = false;
+  }
+  zastavitStopky(){
+    this.shouldContinue = false;
+    this.value = 100;
+    this.isEnabled = false;
+    this.zrusitStopky = 1;
+  }
+  
 }

@@ -22,3 +22,9 @@ export interface Postup {
 export interface DeatilRecept {
         id: number;
 }
+
+export interface HlavniFotka {
+    status: string;
+    error: string;
+    message:string;
+}

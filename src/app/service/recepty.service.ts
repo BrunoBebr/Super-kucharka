@@ -61,7 +61,8 @@ baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty';
     );
   }
 
-  setImage(image: File) {
+  setImage(image: any) {
+    let params = new HttpParams().set("params", image);
     return this.http.post(`${this.baseUrl}/upload-image.php`, { data: image }).pipe(
       map((res: any) => {
         return res['data'];
