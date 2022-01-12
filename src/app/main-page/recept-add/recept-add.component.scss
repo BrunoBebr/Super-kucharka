@@ -39,3 +39,47 @@ textarea {
   z-index: 100;
   background-color: white;
 }  
+.card {
+  max-width: 400px;
+ 
+  display: inline-block;
+  
+}
+.center{
+  text-align: center;
+}
+.header-image {
+  background-image: url('../../../assets/images/3461974.png');
+  background-size: cover;
+}
+
+mat-card {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+
+  
+}
+mat-card-content {
+  text-align: left;
+  height: 100%;
+  width: 100%;
+}
+mat-card-title {
+  text-align: left;
+}
+.button-container {
+  position: fixed;
+  padding: 5px;
+  bottom: 10px;
+  right: 10px;
+}
+.left {
+  float: left;
+}
+.right { 
+  float:  right;
+}
+.mat-icon {
+  vertical-align: middle;
+}

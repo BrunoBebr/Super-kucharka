@@ -11,6 +11,7 @@ import {map, startWith} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { PravidlaVytvoreniReceptuDialog } from '../recept-card/recept-card.component';
 import { MatDialog } from '@angular/material/dialog';
+import {Location} from '@angular/common';
 
 
 export interface User {
@@ -52,7 +53,7 @@ export class ReceptAddComponent implements OnInit {
 
   //currentStep = 0;
 
-  constructor(private _formBuilder: FormBuilder, private receptyService: ReceptyService, public dialog: MatDialog) { }
+  constructor(private _formBuilder: FormBuilder, private receptyService: ReceptyService, public dialog: MatDialog, private _location: Location) { }
 
   myControl = new FormControl();
   options: User[] = [{name: "0"}, {name: '1'},{name: '2'},{name: '3'},{name: '4'},{name: '5'},{name: '6'},{name: '7'},{name: '8'},{name: '9'}, {name: '10'},{name: '15'},{name: '20'},{name: '25'},{name: '30'},{name: '35'},{name: '40'},{name: '45'},{name: '50'},{name: '55'},{name: '60'},];
@@ -65,8 +66,8 @@ export class ReceptAddComponent implements OnInit {
     this.getRecepty();
     this.receptAddForm = this._formBuilder.group({
       'zakladniUdaje': new FormGroup({
-        'nazev': new FormControl("", Validators.required),
-        'autor': new FormControl("", Validators.required),
+        'nazev': new FormControl("", [Validators.required, Validators.maxLength(50),]),
+        'autor': new FormControl("", [Validators.required, Validators.maxLength(25),]),
         'obrazek': new FormControl(""),
         'imageData': new FormControl(""),
         'suroviny': new FormControl("", [Validators.required, Validators.maxLength(1800),]),
@@ -122,10 +123,10 @@ export class ReceptAddComponent implements OnInit {
 
  initPostup(){
     return this._formBuilder.group({
-        nazev: new FormControl("", Validators.required),
+        nazev: new FormControl("", [Validators.required, Validators.maxLength(50),]),
         cas: new FormControl("", Validators.required),
         obrazek: new FormControl(""),
-        postup: new FormControl("", Validators.required)
+        postup: new FormControl("", [Validators.required, Validators.maxLength(1800),])
     })
   }
   
@@ -323,6 +324,9 @@ curDate=new Date();
        console.log(data);
       });  
    */
+  }
+  lastPage() {
+    this._location.back();
   }
 /* file upload */
 }

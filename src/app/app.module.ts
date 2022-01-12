@@ -40,6 +40,7 @@ import { ZebrickyComponent } from './main-page/zebricky/zebricky.component';
 import { NapovedaReceptComponent } from './napoveda-recept/napoveda-recept.component';
 import { PravidlaComponent } from './pravidla/pravidla.component';
 import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.component';
+import { DoporuceneComponent } from './main-page/doporucene/doporucene.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.compo
     PravidlaComponent,
     NapovedaPostupComponent,
     PravidlaVytvoreniReceptuDialog,
-    InteraktivniPostupDialog
+    InteraktivniPostupDialog,
+    DoporuceneComponent
   ],
   imports: [
     BrowserModule,

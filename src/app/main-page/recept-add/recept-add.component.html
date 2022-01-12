@@ -1,3 +1,7 @@
+<br>
+<mat-icon (click)="lastPage()" style="position: absolute;
+        left: 40px;">arrow_back_ios</mat-icon>
+
 <p style="padding-left: 40px; padding-top: 40px;">Pravidla pro vytvoření receptu naleznete <b (click)="openPravidlaVytvoritReceptDialog()" style="text-decoration: underline;">zde</b></p>
 <form let f="ngForm" [formGroup]="receptAddForm" >
   
@@ -8,14 +12,14 @@
       
       <mat-form-field appearance="outline" >
         <mat-label>Název receptu</mat-label>
-        <input matInput placeholder="Název receptu" #nazev formControlName="nazev" required maxlength="50">
+        <input matInput placeholder="Název receptu" #nazev formControlName="nazev" required maxlength="30">
         <mat-hint  align="end">{{nazev.value.length}} / 50</mat-hint>
       </mat-form-field>
       
       <mat-form-field appearance="outline" >
         <mat-label>Autor</mat-label>
-        <input matInput placeholder="Jméno/přezdívka" formControlName="autor" #autor type="text" required maxlength="50">
-        <mat-hint  align="end">{{autor.value.length}} / 50</mat-hint>
+        <input matInput placeholder="Jméno/přezdívka" formControlName="autor" #autor type="text" required maxlength="25">
+        <mat-hint  align="end">{{autor.value.length}} / 25</mat-hint>
       </mat-form-field>
 
         <div>
@@ -98,12 +102,13 @@
         
     <mat-form-field appearance="outline" >
       <mat-label>Název kroku</mat-label>
-      <input matInput placeholder="Název kroku" formControlName="nazev" required>
+      <input matInput placeholder="Název kroku" formControlName="nazev" required maxlength="50">
+      <mat-hint  align="end">{{nazev.value.length}} / 50</mat-hint>
     </mat-form-field>
     
     <mat-form-field appearance="outline" >
       <mat-label>Čas v minutách</mat-label>
-      <input matInput placeholder="Čas" formControlName="cas" required type="number" min="0"  [matAutocomplete]="auto">
+      <input matInput placeholder="Čas" formControlName="cas" required type="number" min="0"  [matAutocomplete]="auto" maxlength="3">
       <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
           {{option.name}}
@@ -111,15 +116,16 @@
       </mat-autocomplete>
     </mat-form-field>
 
-      <div>
+    <!-- <div>
          <p>Obrázek postupu</p> 
         <input  class="form-control" type="file" formControlName="obrazek" accept="image/*">
-      </div>
+      </div>--> 
       <br>
       
       <mat-form-field appearance="outline" >
           <mat-label>Popis kroku</mat-label>
-          <div id="textarea"><textarea matInput formControlName="postup" cols="50" class="form-control-textarea" required></textarea></div>
+          <div id="textarea"><textarea matInput formControlName="postup" cols="50" class="form-control-textarea" required maxlength="1800"></textarea>
+            </div>
         </mat-form-field>  
       
     
@@ -140,7 +146,25 @@
   <mat-step>
     <ng-template matStepLabel>Náhled</ng-template>
     <br>
-    <p class="mat-title center">{{ receptAddForm.value.zakladniUdaje.nazev}}</p>
+    <div class="center">
+    <mat-card class="card">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image"></div>
+        <mat-card-title >{{receptAddForm.value.zakladniUdaje.nazev}}</mat-card-title>
+        <mat-card-subtitle>{{receptAddForm.value.zakladniUdaje.autor}}  | Upraveno {{curDate | date:'yyyy-MM-dd'}}</mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content ><img mat-card-image src="../../../assets/images/food-example.png" [src]="urllink" style="height: 300px; /* adjust as needed */
+      object-fit: contain;">
+        <p style="width:400px; height:40px;"> {{ (receptAddForm.value.zakladniUdaje.note>80)? (receptAddForm.value.zakladniUdaje.note | slice:0:80)+'...':(receptAddForm.value.zakladniUdaje.note) }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        
+       <!-- <button mat-icon-button class="right"><mat-icon>thumb_up</mat-icon></button>-->
+        
+      </mat-card-actions>
+    </mat-card></div>
+   <!-- <p class="mat-title center">{{ receptAddForm.value.zakladniUdaje.nazev}}</p>
     <p class="mat-h6 center">{{ receptAddForm.value.zakladniUdaje.autor}} | Upraveno {{curDate | date:'yyyy-MM-dd'}}</p>
     <br>
     <p class="mat-h4 center">Obtížnost : {{ receptAddForm.value.zakladniUdaje.skill}} | Časová náročnost : {{ receptAddForm.value.zakladniUdaje.cas_pripravy}}</p>
@@ -148,7 +172,7 @@
     <p class="mat-h4 center">{{ receptAddForm.value.zakladniUdaje.note}}</p>
     <br>
     <p class="mat-h4 center">{{ receptAddForm.value.zakladniUdaje.suroviny}}</p>
-
+-->
     <div>
       
       <button mat-button matStepperPrevious class="left">Zpět</button>
