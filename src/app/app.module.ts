@@ -41,7 +41,7 @@ import { NapovedaReceptComponent } from './napoveda-recept/napoveda-recept.compo
 import { PravidlaComponent } from './pravidla/pravidla.component';
 import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.component';
 import { DoporuceneComponent } from './main-page/doporucene/doporucene.component';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -93,6 +93,7 @@ import { DoporuceneComponent } from './main-page/doporucene/doporucene.component
     ShareIconsModule,
     ShareModule,
     MatPaginatorModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

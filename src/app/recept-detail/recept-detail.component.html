@@ -93,7 +93,24 @@
       <div *ngFor="let i of Arr(num).fill(1); let x = index; " >
         
         <mat-step label="{{respObject[x].nazev}}">
+          <mat-progress-bar
+          class="example-margin"
+          value="100"
+          [color]="color"
+          [mode]="mode"
+          [value]="value"
+          [bufferValue]="bufferValue">
+      </mat-progress-bar>
           <br>
+          <button *ngIf="respObject[x].cas > 0" mat-flat-button color="primary" (click)="stopky(respObject[x].cas)" [disabled]="isEnabled">Spustit stopky <mat-icon>alarm_on</mat-icon></button>
+          <button *ngIf="respObject[x].cas.name > 0" mat-flat-button color="primary" (click)="stopky(respObject[x].cas.name)" [disabled]="isEnabled">Spustit stopky <mat-icon>alarm_on</mat-icon></button>
+          <button *ngIf="respObject[x].cas == 0  || respObject[x].cas.name == 0" mat-flat-button color="primary" disabled>Spustit stopky <mat-icon>alarm_on</mat-icon></button>&nbsp;
+         <button *ngIf="zvoneni == 0 && isEnabled && zrusitStopky == 0" mat-flat-button color="warn" (click)="zastavitStopky()">Zastavit stopky<mat-icon>alarm_off</mat-icon></button>
+
+          <button *ngIf="zvoneni == 1" mat-flat-button color="warn" (click)="zastavitZvoneni()">Zastavit alarm <mat-icon>alarm_off</mat-icon></button>
+
+
+          <br><br>
         <p *ngIf="respObject[x].cas == 0  || respObject[x].cas.name == 0">Pro tento krok nebyl nastaven žádný čas</p>
          <p *ngIf="respObject[x].cas > 0 && respObject[x].cas <= 1" >Tento krok vám zabere cca {{respObject[x].cas}} minutu.</p>
          <p *ngIf="respObject[x].cas > 0 && respObject[x].cas > 1 && respObject[x].cas <= 4" >Tento krok vám zabere cca {{respObject[x].cas}} minuty.</p>
@@ -102,6 +119,7 @@
 
          <p *ngIf="respObject[x].cas > 0 && respObject[x].cas > 4 " >Tento krok vám zabere cca {{respObject[x].cas}} minut.</p>
          <p *ngIf="respObject[x].cas.name > 0 && respObject[x].cas.name > 4 " >Tento krok vám zabere cca {{respObject[x].cas.name}} minut.</p>
+         
         <br>
 
         <p>{{respObject[x].postup}}</p>
