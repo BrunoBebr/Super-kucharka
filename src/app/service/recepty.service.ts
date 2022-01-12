@@ -42,6 +42,17 @@ baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty';
     );
   }
 
+  getZebricky(par:any) {
+    let params = new HttpParams().set("params", par);
+    
+    
+    return this.http.get(`${this.baseUrl}/zebricky.php`, { params }).pipe(
+      map((res: any) => {
+        return res['data'];
+      })
+    );
+  }
+
   store(data: Recepty) {
     return this.http.post(`${this.baseUrl}/store.php`, { data: data }).pipe(
       map((res: any) => {
