@@ -1,0 +1,128 @@
+.imageHodnoceni{
+   width: 250px;
+   height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.divHodnoceni{
+    width: 300px;
+    height: 350px;
+    text-align:center;
+    display: inline-block;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.containerRecenze {
+    width: 1200px;
+    animation: slideshow 10s linear infinite;
+  }
+
+  @keyframes slideshow {
+    0%    { left: 100%; }
+    100%  { left: -200%; }
+  }
+
+  .tech-slideshow {
+    height: 300px;
+    max-width: 3000px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+  
+  .tech-slideshow > div {
+    height: 200px;
+    width: 6016px;
+    background: url(../../../assets/images/hodnoceni1.png);
+    background-size: (1350px);
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .tech-slideshow-2 {
+    height: 300px;
+    max-width: 3000px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .tech-slideshow-2 > div {
+    height: 200px;
+    width: 6016px;
+    background: url(../../../assets/images/hodnoceni2.png);
+    background-size: (1350px);
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .tech-slideshow .mover {
+    animation: moveSlideshow 500s linear infinite;
+  }
+  .tech-slideshow-2 .mover {
+    animation: moveSlideshowDruha 500s linear infinite;
+  }
+  
+  .tracking-in-contract-bck-bottom {
+	-webkit-animation: tracking-in-contract-bck-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+	        animation: tracking-in-contract-bck-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both;
+}
+.center{
+    text-align: center;
+}
+
+
+  
+  @keyframes moveSlideshow {
+    100% { 
+      transform: translateX(-66.666%);  
+    }
+  }
+  @keyframes moveSlideshowDruha {
+    100% { 
+      transform: translateX(66.666%);  
+    }
+  }
+  @-webkit-keyframes tracking-in-contract-bck-bottom {
+    0% {
+      letter-spacing: 1em;
+      -webkit-transform: translateZ(400px) translateY(300px);
+              transform: translateZ(400px) translateY(300px);
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      -webkit-transform: translateZ(0) translateY(0);
+              transform: translateZ(0) translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes tracking-in-contract-bck-bottom {
+    0% {
+      letter-spacing: 1em;
+      -webkit-transform: translateZ(400px) translateY(300px);
+              transform: translateZ(400px) translateY(300px);
+      opacity: 0;
+    }
+    40% {
+      opacity: 0.6;
+    }
+    100% {
+      -webkit-transform: translateZ(0) translateY(0);
+              transform: translateZ(0) translateY(0);
+      opacity: 1;
+    }
+  }
+  
