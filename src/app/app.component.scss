@@ -23,13 +23,13 @@
 #kontakty{
  float: left;
  padding-top: 20px;
- padding-left: 170px;
+ width: 33.33%;
+
  position: relative;
 }
 #ctenicko{
   padding-top: 20px;
-  padding-left: 220px;
-  padding-right: 170px;
+  width: 33.33%;
   float: left;
   position: relative;
 }
@@ -37,8 +37,8 @@
   cursor: pointer;
 }
 #help{
-  padding-left: 250px;
-  padding-right: 170px;
+  width: 33.33%;
+
   padding-top: 20px;
   float: left;
   position: relative;

@@ -72,5 +72,16 @@ baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty';
       })
     );
   }
+  upload(value:any){
+  //  let params = new HttpParams().set("params", value);
+    //console.log((this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).value);
+    return this.http.post(`${this.baseUrl}/file-upload.php`, value)
+    .pipe(
+      map((res: any) => {
+        return res['data'];
+        
+      }));
+    }
+  
   
 }

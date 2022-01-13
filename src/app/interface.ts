@@ -28,3 +28,6 @@ export interface HlavniFotka {
     error: string;
     message:string;
 }
+export interface Img {
+    image:string;
+}

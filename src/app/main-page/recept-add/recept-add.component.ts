@@ -4,7 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators, } from '@an
 import { MatStepper } from '@angular/material/stepper';
 import {NgForm} from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { HlavniFotka, Recepty } from 'src/app/interface';
+import { HlavniFotka, Img, Recepty } from 'src/app/interface';
 import { ReceptyService } from 'src/app/service/recepty.service';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -47,7 +47,7 @@ export class ReceptAddComponent implements OnInit {
   formGroup!: FormGroup;
   form!: FormArray;
   postup!: any;
-
+  img: Img[] = [];
   uploaded = false;
   uploadMessage = false;
   
@@ -346,26 +346,27 @@ curDate=new Date();
       
       reader.onload = () => {
         this.imgFile = reader.result as string;
-        (this.receptAddForm.get('zakladniUdaje') as FormGroup).patchValue({
-          obrazek: reader.result
-        });
-  
+        (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).patchValue({
+          name: "DATA",
+          file: "DATA",
+          imgSrc: reader.result
+        })
       };
-
-       this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', reader.result)
-    .subscribe(response => {
-      alert('Image has been uploaded.');
-    })
-     
-
+      this.upload();
     }
   }
   get uf(){
   return (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).controls;
 }
 upload(){
-  //console.log(this.uploadForm.value);
- 
-}
+  
+    console.log((this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).value);
+    this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).value)
+      .subscribe(
+        response  => {
+          (this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).patchValue(response);
+
+      })
+  }
 
 }
