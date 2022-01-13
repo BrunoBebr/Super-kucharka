@@ -14,6 +14,9 @@ export class ReceptyService {
 //  baseUrl = 'http://localhost/api/recepty';
 baseUrl = 'https://bebrbr20.sps-prosek.cz/WEB/SQL/api/recepty';
 
+//baseUrl = 'http://kucharkaprotloustiky.rf.gd/api/recepty';
+
+
   constructor(private http: HttpClient) { }
 
   getAll() {

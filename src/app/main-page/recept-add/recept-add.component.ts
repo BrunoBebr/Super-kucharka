@@ -12,13 +12,15 @@ import { environment } from 'src/environments/environment';
 import { PravidlaVytvoreniReceptuDialog } from '../recept-card/recept-card.component';
 import { MatDialog } from '@angular/material/dialog';
 import {Location} from '@angular/common';
+import { Router } from '@angular/router';
 
 
 export interface User {
   name: string;
 }
 export interface Time {
-  name: string;
+  name: any;
+  
 }
 
 @Component({
@@ -54,14 +56,33 @@ export class ReceptAddComponent implements OnInit {
 
   //currentStep = 0;
 
-  constructor(private http: HttpClient, private _formBuilder: FormBuilder, private receptyService: ReceptyService, public dialog: MatDialog, private _location: Location) { }
+  constructor(private http: HttpClient, private router: Router, private _formBuilder: FormBuilder, private receptyService: ReceptyService, public dialog: MatDialog, private _location: Location) { }
 
   myControl = new FormControl();
   options: User[] = [{name: "0"}, {name: '1'},{name: '2'},{name: '3'},{name: '4'},{name: '5'},{name: '6'},{name: '7'},{name: '8'},{name: '9'}, {name: '10'},{name: '15'},{name: '20'},{name: '25'},{name: '30'},{name: '35'},{name: '40'},{name: '45'},{name: '50'},{name: '55'},{name: '60'},];
-  time: Time[] = [{name: "10"}, {name: '15'},{name: '20'},{name: '25'},{name: '30'},{name: '35'},{name: '40'},{name: '45'},{name: '50'},{name: '60'}, {name: '70'},{name: '80'},{name: '90'},{name: '100'},{name: '110'},{name: '120'},{name: '130'},{name: '140'},{name: '150'},{name: '160'},{name: '170'},{name: '180'},{name: '190'},{name: '200'},];
+  time: Time[] = [{name: '10'},
+                  {name: '20'},                
+                  {name: '30'},                 
+                  {name: '40'},                 
+                  {name: '50'},
+                  {name: '60'},
+                   {name: '70'},
+                   {name: '80'},
+                   {name: '90'},
+                   {name: '100'},
+                   {name: '110'},
+                   {name: '120'},
+                   {name: '130'},
+                   {name: '140'},
+                   {name: '150'},
+                   {name: '160'},
+                   {name: '170'},
+                   {name: '180'},
+                   {name: '190'},
+                   {name: '200'},];
 
   filteredOptions: Observable<User[]> | undefined;
-  filteredOptionsTime: Observable<Time[]> | undefined;
+  filteredOptionsTime!: Observable<Time[]> ;
 
   ngOnInit(): void {
     this.getRecepty();
@@ -93,8 +114,9 @@ export class ReceptAddComponent implements OnInit {
     );
     this.filteredOptionsTime = this.myControl.valueChanges.pipe(
       startWith(''),
-      map(value => (typeof value === 'string' ? value : value.name)),
+      map(value => (typeof value === 'number' ? value : value.name)),
       map(name => (name ? this._filterTime(name) : this.time.slice())),
+      
     );
   }
 
@@ -205,6 +227,7 @@ loadingSpinner(){
         this.uploadMessage = false;
         window.location.reload();
         this.receptAddForm.reset();
+        this.router.navigate(['']);
       });
     }
     

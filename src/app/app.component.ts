@@ -19,6 +19,7 @@ export class AppComponent implements OnInit{
   recepty: Recepty[] = [];
   error = '';
   success = '';
+  sharebut = false
         
   constructor(private receptyService: ReceptyService,public dialog: MatDialog, private _formBuilder: FormBuilder, private router: Router) {
   }
@@ -58,7 +59,11 @@ openPravidlaVytvoritReceptDialog() {
 }
  
   scroll(el: HTMLElement) {
+    this.sharebut = true;
     el.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+    this.delay(5000).then(any=>{
+      this.sharebut = false;
+    });
   }
   async delay(ms: number) {
     await new Promise<void>(resolve => setTimeout(()=>resolve(), ms)).then();
