@@ -37,6 +37,7 @@ export interface Time {
 export class ReceptAddComponent implements OnInit {
   urllink:string ="assets/images/food-example.png"
   receptAddForm!: FormGroup;
+  uploadForm!: FormGroup;
   imgFile!: string;
   recepty: Recepty[] = [];
   fotka: HlavniFotka[] = [];
@@ -105,6 +106,12 @@ export class ReceptAddComponent implements OnInit {
       form : this._formBuilder.array([this.init()])
     }) 
     this.addItem();
+
+     this.uploadForm = new FormGroup({
+      name: new FormControl('', [Validators.required]),
+      file: new FormControl('', [Validators.required]),
+      imgSrc: new FormControl('', [Validators.required])
+    });
 
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -333,30 +340,31 @@ curDate=new Date();
   }
 /* file upload */
 
+ 
 get uf(){
-  return (this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).controls;
+  return this.uploadForm.controls;
 }
  
-  onImageChange(e:any) {
-    const reader = new FileReader();
-    
-    if(e.target.files && e.target.files.length) {
-      const [file] = e.target.files;
-      reader.readAsDataURL(file);
-    
-      reader.onload = () => {
-        this.imgFile = reader.result as string;
-        (this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).patchValue({
-          imgSrc: reader.result
-        });
+onImageChange(e: { target:any}) {
+  const reader = new FileReader();
   
-      };
-      this.upload();
-    }
+  if(e.target.files && e.target.files.length) {
+    const [file] = e.target.files;
+    reader.readAsDataURL(file);
+  
+    reader.onload = () => {
+      this.imgFile = reader.result as string;
+      this.uploadForm.patchValue({
+        imgSrc: reader.result
+      });
+ 
+    };
+   this.upload(); 
   }
+}
   upload(){
-    console.log((this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).value);
-    this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', (this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).value)
+    console.log(this.uploadForm.value);
+    this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', this.uploadForm.value)
       .subscribe(response => {
         alert('Image has been uploaded.');
       })
