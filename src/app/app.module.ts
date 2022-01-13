@@ -63,7 +63,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     InteraktivniPostupDialog,
     OnasDialog,
     VznikWebuDialog,
-    DoporuceneComponent
+    DoporuceneComponent,
+    
   ],
   imports: [
     BrowserModule,
