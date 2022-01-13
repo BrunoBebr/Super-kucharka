@@ -347,6 +347,8 @@ curDate=new Date();
       reader.onload = () => {
         this.imgFile = reader.result as string;
         (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).patchValue({
+          name: "",
+          file: "",
           imgSrc: reader.result
         });
   
