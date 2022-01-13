@@ -66,11 +66,35 @@
     transform: translate3d(0, 0, 0);
   }
 
+  .tech-slideshow-3 {
+    height: 300px;
+    max-width: 3000px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .tech-slideshow-3 > div {
+    height: 200px;
+    width: 6016px;
+    background: url(../../../assets/images/hodnoceni3.png);
+    background-size: (1350px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translate3d(0, 0, 0);
+  }
+
   .tech-slideshow .mover {
     animation: moveSlideshow 500s linear infinite;
   }
   .tech-slideshow-2 .mover {
     animation: moveSlideshowDruha 500s linear infinite;
+  }
+  .tech-slideshow-3 .mover {
+    animation: moveSlideshow 500s linear infinite;
   }
   
   .tracking-in-contract-bck-bottom {
