@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Recepty } from './interface';
-import { HodnoceniDialog, InteraktivniPostupDialog, PravidlaVytvoreniReceptuDialog, VytvoreniReceptuDialog } from './main-page/recept-card/recept-card.component';
+import { HodnoceniDialog, InteraktivniPostupDialog, PravidlaVytvoreniReceptuDialog, VytvoreniReceptuDialog, OnasDialog, VznikWebuDialog } from './main-page/recept-card/recept-card.component';
 import { ReceptyService } from './service/recepty.service';
 
 
@@ -56,6 +56,12 @@ openInteraktivniReceptDialog() {
 
 openPravidlaVytvoritReceptDialog() {
   this.dialog.open(PravidlaVytvoreniReceptuDialog);
+}
+openOnasDialog() {
+  this.dialog.open(OnasDialog);
+}
+openVznikWebuDialog() {
+  this.dialog.open(VznikWebuDialog);
 }
  
   scroll(el: HTMLElement) {
