@@ -335,9 +335,7 @@ curDate=new Date();
   }
 /* file upload */
 
-get uf(){
-  return (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).controls;
-}
+
  
   onImageChange(e:any) {
     const reader = new FileReader();
@@ -349,15 +347,24 @@ get uf(){
       reader.onload = () => {
         this.imgFile = reader.result as string;
         (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).patchValue({
-          imgSrc: reader.result,
           name: file.name,
-          file:file.name
+          file:file.name,
+          imgSrc: reader.result
+          
         });
   
       };
+
+      this.delay(1000).then(any=>{
+        
       this.upload();
+      });
+
     }
   }
+  get uf(){
+  return (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).controls;
+}
   upload(){
     console.log((this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).value);
     this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).value)
