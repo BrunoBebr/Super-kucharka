@@ -352,7 +352,10 @@ curDate=new Date();
   
       };
 
-      
+       this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', reader.result)
+    .subscribe(response => {
+      alert('Image has been uploaded.');
+    })
      
 
     }
@@ -360,6 +363,9 @@ curDate=new Date();
   get uf(){
   return (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).controls;
 }
-  
+upload(){
+  //console.log(this.uploadForm.value);
+ 
+}
 
 }
