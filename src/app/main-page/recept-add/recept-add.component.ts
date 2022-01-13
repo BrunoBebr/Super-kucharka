@@ -37,7 +37,6 @@ export interface Time {
 export class ReceptAddComponent implements OnInit {
   urllink:string ="assets/images/food-example.png"
   receptAddForm!: FormGroup;
-  uploadForm!: FormGroup;
   imgFile!: string;
   recepty: Recepty[] = [];
   fotka: HlavniFotka[] = [];
@@ -107,11 +106,7 @@ export class ReceptAddComponent implements OnInit {
     }) 
     this.addItem();
 
-     this.uploadForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      file: new FormControl('', [Validators.required]),
-      imgSrc: new FormControl('', [Validators.required])
-    });
+    
 
 
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -291,7 +286,7 @@ onSelectedFile(event:any){
     var file:File = event.target.files[0];
     console.log( file);
     this.receptAddForm.get('zakladniUdaje.obrazek')!.setValue(file.name);
-    this.receptAddForm.get('zakladniUdaje.imageData')!.setValue(file);
+   // this.receptAddForm.get('zakladniUdaje.imageData')!.setValue(file);
 
   }
   
@@ -340,31 +335,32 @@ curDate=new Date();
   }
 /* file upload */
 
- 
 get uf(){
-  return this.uploadForm.controls;
+  return (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).controls;
 }
  
-onImageChange(e: { target:any}) {
-  const reader = new FileReader();
+  onImageChange(e:any) {
+    const reader = new FileReader();
+    
+    if(e.target.files && e.target.files.length) {
+      const [file] = e.target.files;
+      reader.readAsDataURL(file);
+      
+      reader.onload = () => {
+        this.imgFile = reader.result as string;
+        (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).patchValue({
+          imgSrc: reader.result,
+          name: file.name,
+          file:file.name
+        });
   
-  if(e.target.files && e.target.files.length) {
-    const [file] = e.target.files;
-    reader.readAsDataURL(file);
-  
-    reader.onload = () => {
-      this.imgFile = reader.result as string;
-      this.uploadForm.patchValue({
-        imgSrc: reader.result
-      });
- 
-    };
-   this.upload(); 
+      };
+      this.upload();
+    }
   }
-}
   upload(){
-    console.log(this.uploadForm.value);
-    this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', this.uploadForm.value)
+    console.log((this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).value);
+    this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', (this.receptAddForm.get('zakladniUdaje.imageData') as FormGroup).value)
       .subscribe(response => {
         alert('Image has been uploaded.');
       })
