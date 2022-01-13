@@ -37,7 +37,7 @@ export interface Time {
 export class ReceptAddComponent implements OnInit {
   urllink:string ="assets/images/food-example.png"
   receptAddForm!: FormGroup;
-
+  imgFile!: string;
   recepty: Recepty[] = [];
   fotka: HlavniFotka[] = [];
   error = '';
@@ -243,8 +243,7 @@ addRecept(receptAddForm: FormGroup) {
   this.resetAlerts();
   this.loadingSpinner(); 
   
-  var imageData = this.receptAddForm.get('zakladniUdaje.imageData')?.value;
-   this.imageUpload(imageData);
+
 
    
   this.load = true;
@@ -265,10 +264,6 @@ addRecept(receptAddForm: FormGroup) {
     (err) => (this.error = err.message)
   );
 }
-imageUpload(image: any) {
- // console.log(image);
-  
-}
 
 
 selectFile(event:any){
@@ -287,25 +282,10 @@ onSelectedFile(event:any){
   if(event.target.files.length > 0){
     
     var file:File = event.target.files[0];
-    //console.log( file);
+    console.log( file);
     this.receptAddForm.get('zakladniUdaje.obrazek')!.setValue(file.name);
     this.receptAddForm.get('zakladniUdaje.imageData')!.setValue(file);
 
-    this.receptyService.setImage(file).subscribe(
-    
-      (res: Recepty) => {
-        // Update the list of cars
-        this.recepty.push(res)
-        //console.log("SENT " + JSON.stringify(receptAddForm.value));
-        // Inform the user
-        this.success = 'Created successfully';
-        this.uploaded = true;
-   
-        // Reset the form
-        
-      },
-      (err) => (this.error = err.message)
-    );
   }
   
 }
@@ -352,11 +332,34 @@ curDate=new Date();
     this._location.back();
   }
 /* file upload */
+
+get uf(){
+  return (this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).controls;
 }
-
-
-
-
+ 
+  onImageChange(e:any) {
+    const reader = new FileReader();
+    
+    if(e.target.files && e.target.files.length) {
+      const [file] = e.target.files;
+      reader.readAsDataURL(file);
+    
+      reader.onload = () => {
+        this.imgFile = reader.result as string;
+        (this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).patchValue({
+          imgSrc: reader.result
+        });
   
+      };
+      this.upload();
+    }
+  }
+  upload(){
+    console.log((this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).value);
+    this.http.post('http://kucharkaprotloustiky.rf.gd/api/recepty/file-upload.php', (this.receptAddForm.get('zakladniUdaje.obrazek') as FormGroup).value)
+      .subscribe(response => {
+        alert('Image has been uploaded.');
+      })
+  }
 
-
+}

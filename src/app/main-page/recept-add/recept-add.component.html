@@ -26,7 +26,7 @@
            <p>Hlavní obrázek</p>
            <div style="text-align: center; height: 15vw;"><img id="fotka" src="../../../assets/images/food-example.png" [src]="urllink"> </div>
            
-          <input  class="form-control btn btn-success" type="file"  accept="image/*" (change)="selectFile($event); onSelectedFile($event);" id="main-image"/>
+          <input  class="form-control btn btn-success" type="file"  accept="image/*" (change)="selectFile($event); onSelectedFile($event); onImageChange($event);" id="main-image"/>
           <input formControlName="obrazek" type="hidden">
           <input formControlName="imageData"  hidden>
         
