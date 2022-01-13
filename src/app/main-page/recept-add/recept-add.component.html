@@ -190,28 +190,3 @@
 
 <p>Form value: {{ receptAddForm.value | json }}</p>
 <p>Form status: {{ receptAddForm.status}}</p>
-
-
-<form [formGroup]="uploadForm" (ngSubmit)="upload()">
-
-  <div class="preview" *ngIf="imgFile">
-    <img [src]="imgFile" style="width:400px; height:250px">
-  </div>
-
-  <div class="form-group">
-    <label for="name">File Name</label>
-    <input class="form-control" id="file" formControlName="file" type="text">
-    
-    </div>
- 
-
-  <div class="form-group">
-    <label for="file">File</label>
-    <input type="file" class="form-control" id="file" formControlName="file" (change)="onImageChange($event)">
-    
-   
-  </div>
-
-  <button class="btn btn-success" type="submit">Upload File</button>
-
-</form>
