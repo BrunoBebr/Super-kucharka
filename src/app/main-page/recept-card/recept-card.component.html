@@ -17,7 +17,7 @@ left: 40px; top: 25px;">
       <mat-card-subtitle>{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</mat-card-subtitle>
     </mat-card-header>
     
-    <mat-card-content [routerLink]="['/recept', item.id]"><img mat-card-image src="../../../assets/images/{{item.main_img}}" style="height: 300px; /* adjust as needed */
+    <mat-card-content [routerLink]="['/recept', item.id]"><img mat-card-image src="{{item.main_img}}" style="height: 300px; /* adjust as needed */
     object-fit: contain;">
       <p style="width:400px; height:40px;"> {{ (item.note.length>80)? (item.note | slice:0:80)+'...':(item.note) }}</p>
     </mat-card-content>
