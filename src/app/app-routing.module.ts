@@ -8,6 +8,7 @@ import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.compo
 import { PravidlaComponent } from './pravidla/pravidla.component';
 import { OnasComponent } from './onas/onas.component';
 import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
+import { VaculdaComponent } from './vaculda/vaculda.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: "Jak vytvořit recept", component: NapovedaReceptComponent},
   {path: "Interaktivní postup", component: NapovedaPostupComponent},
   {path: "Pravidla vytváření receptu", component: PravidlaComponent},
+  {path: "vaculda", component:VaculdaComponent}
 ];
 
 @NgModule({

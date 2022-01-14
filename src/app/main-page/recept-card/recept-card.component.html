@@ -1,54 +1,74 @@
-<div *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !='' || search!=''" [routerLink]="['']" style="position: relative;
-left: 40px; top: 25px;">
-<mat-icon style=" font-size: 20px">arrow_back_ios</mat-icon>Odstranit filtr</div>
-
-<p *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !='' || search!=''" class="center filtrtext">Aktuální filtr <span *ngIf="obtiznost !=''">| Obtížnost - {{obtiznost}}&nbsp;</span>
-                    <span *ngIf="cas_pripravy !=''">| Časová náročnost - do {{cas_pripravy}} minut&nbsp;</span>
-                    <span *ngIf="hodnoceni !=''">| Hodnocení - min {{hodnoceni}} upvotes&nbsp;</span>
-                    <span *ngIf="search !=''">| Recepty obsahující výraz: "{{search}}" &nbsp;</span>
-                  </p>
 
 
-<div class="center">
-<mat-card class="card" *ngFor="let item of obs | async">
-    <mat-card-header>
-      <div mat-card-avatar class="header-image"></div>
-      <mat-card-title [routerLink]="['/recept', item.id]">{{item.nazev}}</mat-card-title>
-      <mat-card-subtitle>{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</mat-card-subtitle>
-    </mat-card-header>
-    
-    <mat-card-content [routerLink]="['/recept', item.id]"><img mat-card-image src="http://kucharkaprotloustiky.rf.gd/api/recepty/{{item.main_img}}" style="height: 300px; /* adjust as needed */
-    object-fit: contain;">
-      <p style="width:400px; height:40px;"> {{ (item.note.length>80)? (item.note | slice:0:80)+'...':(item.note) }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button class="left" [routerLink]="['/recept', item.id]"><mat-icon>restaurant</mat-icon> - Číst více</button>
-      
-      <button mat-button class="right" (click)="openDialog()"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></button>
-     <!-- <button mat-icon-button class="right"><mat-icon>thumb_up</mat-icon></button>-->
-      
-    </mat-card-actions>
-  </mat-card>
+
+
+<div class="background">     
+  <div class="hero">
+   
+<div class="content hero__title">
+  <div>
+      <div *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !='' || search!=''" [routerLink]="['']" style="position: relative;
+    left: 40px; top: 25px;">
+    <mat-icon style=" font-size: 20px">arrow_back_ios</mat-icon>Odstranit filtr</div>
+
+    <p *ngIf="obtiznost !='' || cas_pripravy !='' || hodnoceni !='' || search!=''" class="center filtrtext">Aktuální filtr <span *ngIf="obtiznost !=''">| Obtížnost - {{obtiznost}}&nbsp;</span>
+                        <span *ngIf="cas_pripravy !=''">| Časová náročnost - do {{cas_pripravy}} minut&nbsp;</span>
+                        <span *ngIf="hodnoceni !=''">| Hodnocení - min {{hodnoceni}} upvotes&nbsp;</span>
+                        <span *ngIf="search !=''">| Recepty obsahující výraz: "{{search}}" &nbsp;</span>
+                      </p>
+
+
+    <div class="center">
+    <mat-card class="card" *ngFor="let item of obs | async">
+        <mat-card-header>
+          <div mat-card-avatar class="header-image"></div>
+          <mat-card-title [routerLink]="['/recept', item.id]">{{item.nazev}}</mat-card-title>
+          <mat-card-subtitle>{{item.autor}}  | Upraveno {{item.date | date:'dd/M/yyyy'}}</mat-card-subtitle>
+        </mat-card-header>
+        
+        <mat-card-content [routerLink]="['/recept', item.id]"><img mat-card-image src="http://kucharkaprotloustiky.rf.gd/api/recepty/{{item.main_img}}" style="height: 300px; /* adjust as needed */
+        object-fit: contain;">
+          <p style="width:400px; height:40px;"> {{ (item.note.length>80)? (item.note | slice:0:80)+'...':(item.note) }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button class="left" [routerLink]="['/recept', item.id]"><mat-icon>restaurant</mat-icon> - Číst více</button>
+          
+          <button mat-button class="right" (click)="openDialog()"><mat-icon>expand_less</mat-icon>{{item.hodnoceni}}<mat-icon>expand_more</mat-icon></button>
+        <!-- <button mat-icon-button class="right"><mat-icon>thumb_up</mat-icon></button>-->
+          
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+
+    <mat-paginator 
+                  [pageSize]="9"
+                  [pageSizeOptions]="[9, 18, 36, 72]"
+                  aria-label="Select page">
+    </mat-paginator>
+
+    <!--<div class="button-container">
+      <button mat-fab color="primary" aria-label="Nový recept" routerLink="recepty/novy">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>-->
+
+    <div class="loading" *ngIf=load>
+      <mat-spinner style="position: absolute; top: 50%; left: 50%;  margin: -25px 0 0 -25px;"></mat-spinner>
+      <p  style="position: absolute; top: 65%; left: 50%;  margin: -25px 0 0 -25px; color: black;">Načítání dat</p>
+    </div>  
+    </div>
 </div>
-
-
-<mat-paginator 
-              [pageSize]="9"
-              [pageSizeOptions]="[9, 18, 36, 72]"
-              aria-label="Select page">
-</mat-paginator>
-
-<!--<div class="button-container">
-  <button mat-fab color="primary" aria-label="Nový recept" routerLink="recepty/novy">
-    <mat-icon>add</mat-icon>
-  </button>
-</div>-->
-
-<div class="loading" *ngIf=load>
-  <mat-spinner style="position: absolute; top: 50%; left: 50%;  margin: -25px 0 0 -25px;"></mat-spinner>
-  <p  style="position: absolute; top: 65%; left: 50%;  margin: -25px 0 0 -25px; color: black;">Načítání dat</p>
-  
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
+<div class="cube"></div>
 </div>
+</div> 
+
+
 
 <button  mat-fab color="accent" aria-label="Example icon button with a delete icon" style="position: fixed; bottom: 10px; right: 10px;" [routerLink]="['recepty/novy']">
   <mat-icon>add</mat-icon>

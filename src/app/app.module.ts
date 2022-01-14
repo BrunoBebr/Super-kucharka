@@ -45,6 +45,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { ShareButtonModule } from 'ngx-sharebuttons/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { OnasComponent } from './onas/onas.component';
+import { VaculdaComponent } from './vaculda/vaculda.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { OnasComponent } from './onas/onas.component';
     OnasDialog,
     VznikWebuDialog,
     DoporuceneComponent,
+    VaculdaComponent,
     
   ],
   imports: [
