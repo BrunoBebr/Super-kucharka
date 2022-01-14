@@ -7,8 +7,8 @@
    
    <br>
     <p class="tracking-in-contract-bck-bottom mat-headline center">Žebříčky</p>
-    <p class="center mat-title">Recepty s nejvyšším hodnocením</p>
-    <div class="center">
+    <p class="center mat-title scale-in-center">Recepty s nejvyšším hodnocením</p>
+    <div class="center swing-in-top-fwd">
         <mat-card class="card" *ngFor="let item of hodnHigh">
             <mat-card-header>
               <div mat-card-avatar class="header-image"></div>
@@ -30,8 +30,8 @@
           </mat-card>
         </div>
 
-    <p class="center mat-title">Nejnovější recepty</p>
-      <div class="center">
+    <p class="center mat-title scale-in-center-2">Nejnovější recepty</p>
+      <div class="center swing-in-top-fwd-2">
         <mat-card class="card" *ngFor="let item of receptyNew">
             <mat-card-header>
               <div mat-card-avatar class="header-image"></div>
@@ -52,8 +52,8 @@
             </mat-card-actions>
           </mat-card>
         </div>
-    <p class="center mat-title">Recepty s nejkratším časem přípravy</p>
-      <div class="center">
+    <p class="center mat-title scale-in-center-3">Recepty s nejkratším časem přípravy</p>
+      <div class="center swing-in-top-fwd-3">
         <mat-card class="card" *ngFor="let item of receptyShortest">
             <mat-card-header>
               <div mat-card-avatar class="header-image"></div>
@@ -76,9 +76,9 @@
         </div>
 
         
-    <p class="center mat-title">Recepty s nejdelším časem přípravy</p>
+    <p class="center mat-title scale-in-center-4">Recepty s nejdelším časem přípravy</p>
 
-    <div class="center">
+    <div class="center swing-in-top-fwd-4">
       <mat-card class="card" *ngFor="let item of receptyLongest">
           <mat-card-header>
             <div mat-card-avatar class="header-image"></div>
@@ -99,8 +99,8 @@
           </mat-card-actions>
         </mat-card>
       </div>
-    <p class="center mat-title">Recepty s nejhorším hodnocením</p>
-    <div class="center">
+    <p class="center mat-title scale-in-center-5">Recepty s nejhorším hodnocením</p>
+    <div class="center swing-in-top-fwd-5">
       <mat-card class="card" *ngFor="let item of receptyHodnoceniLow">
           <mat-card-header>
             <div mat-card-avatar class="header-image"></div>
@@ -136,3 +136,6 @@
     </div>
     </div> 
     
+    <button  mat-fab color="accent" aria-label="Example icon button with a delete icon" style="position: fixed; bottom: 10px; right: 10px;" [routerLink]="['recepty/novy']">
+      <mat-icon>add</mat-icon>
+    </button>
