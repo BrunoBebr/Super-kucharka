@@ -34,7 +34,10 @@
   position: relative;
 }
 .klik_text{
-  cursor: pointer;
+  cursor: url("../assets/images/vaculda-velky.png"), pointer;
+}
+.vaculda{
+  cursor: url("../assets/images/vaculda-extra-velky.png"), pointer;
 }
 #help{
   width: 33.33%;
