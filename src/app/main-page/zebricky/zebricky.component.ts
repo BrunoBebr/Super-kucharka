@@ -46,7 +46,7 @@ export class ZebrickyComponent implements OnInit {
         this.hodnHigh = data;
         this.success = 'successful retrieval of the list';
         this.uploaded = true;
-        console.log(this.hodnHigh)
+//        console.log(this.hodnHigh)
 
       },
       (err) => {

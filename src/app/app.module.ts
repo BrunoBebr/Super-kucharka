@@ -26,7 +26,6 @@ import { ReceptDetailComponent } from './recept-detail/recept-detail.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatGridListModule} from '@angular/material/grid-list';
-import { OnasComponent } from './onas/onas.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -42,6 +41,10 @@ import { PravidlaComponent } from './pravidla/pravidla.component';
 import { NapovedaPostupComponent } from './napoveda-postup/napoveda-postup.component';
 import { DoporuceneComponent } from './main-page/doporucene/doporucene.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+import { ShareButtonModule } from 'ngx-sharebuttons/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { OnasComponent } from './onas/onas.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +99,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ShareIconsModule,
     ShareModule,
     MatPaginatorModule,
-    MatProgressBarModule
+    MatProgressBarModule, 
+    ShareButtonModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

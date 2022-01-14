@@ -43,7 +43,7 @@
   
   <div id="ctenicko">
     <p class="mat-title text-center">Náš tým</p>
-    <p class="klik_text" (click)="openOnasDialog()">O nás</p>
+    <p class="klik_text" [routerLink]="['/onas']">O nás</p>
     <p class="klik_text" (click)="openVznikWebuDialog()">Vznik webu</p>
     
   </div>
@@ -61,9 +61,10 @@
   <div id="problem" #share>
     <share-buttons [theme]="'circles-dark'"
     [include]="['facebook','twitter','linkedin','pinterest','reddit','tumblr','mix','viber','vk','telegram','messenger','whatsapp','xing','line','sms','email','print','copy']"
-    [show]="6"
-    
-  ></share-buttons>
+    [exclude]="['tumblr','mix','vk','xing','line']"
+    [show]="5"
+    [autoSetMeta]="false"
+   ></share-buttons>
   <br>
   <p class="mat-h4 ">©2022 Kuchařky pro tlouštíky s.r.o.</p></div>
 </div>
