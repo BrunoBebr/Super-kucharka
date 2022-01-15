@@ -29,17 +29,12 @@ export class OnasComponent implements OnInit {
   }
 
   pou(){
-   let audio = new Audio();
-    if (audio.played) {
-      audio.pause();
-      
-    } 
+    console.log("Právě jsi našel tajný easter egg :)");
+   let audio = new Audio(); 
     audio.src = "../../../assets/audio/pou_song.mp3";
     audio.load();
     audio.play();
-  
-
-  this.delay(30000).then(any=>{
+  this.delay(60000).then(any=>{
      audio.pause();
   });
   }
