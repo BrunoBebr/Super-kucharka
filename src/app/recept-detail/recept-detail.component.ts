@@ -160,11 +160,27 @@ export class ReceptDetailComponent implements OnInit {
     this.isEnabled = false;
     this.zrusitStopky = 1;
   }
-  Dat_like_dislike(){
+
+  Dat_like(id:any){
     this.hodnoceni = this.hodnoceni +1;
-    console.log(this.hodnoceni);
-    //var data=["id":id];
+    console.log(id);
+    var data=[id, "like"];
+    var values = JSON.stringify(data);
+
+    this.getFilteredRecepty(values);
   }
+
+  Dat_dislike(id:any){
+    this.hodnoceni = this.hodnoceni -1;
+    console.log(this.hodnoceni);
+    var data=[id, "dislike"];
+    var values = JSON.stringify(data);
+    this.getFilteredRecepty(values);
+
+  }
+
+
+
   getFilteredRecepty(params:any): void {
     this.receptyService.vote(params).subscribe(
       (data: Recepty[]) => {

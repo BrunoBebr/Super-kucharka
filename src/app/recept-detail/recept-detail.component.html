@@ -126,11 +126,11 @@
          
         <button *ngIf="x+1 > 1" mat-button matStepperPrevious>Zpět</button>
         <button *ngIf="respObject.length > x+1" mat-button matStepperNext>Další</button>
-        <input type="image" src="https://s3.amazonaws.com/heights-photos/wp-content/uploads/2020/10/05200825/thumbs-up-01.png" *ngIf="respObject.length == x+1" class="like_button" (click)="Dat_like_dislike()"><i class="fa fa-thumbs-up"></i>
-        {{hodnoceni}}
-        <input type="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPQ8VgaNCCLGb09ETr5WcjJGLna2FP7j4-Rw&usqp=CAU" *ngIf="respObject.length == x+1" class="dislike_button" (click)="Dat_like_dislike()"><i class="fa fa-thumbs-up"></i>
-        <input type="number" class="number_dislike" *ngIf="respObject.length == x+1" value = "0" name="">
-        <input type="number" class="number_dislike" *ngIf="respObject.length == x+1" value = "0" name="">
+        <mat-icon *ngIf="respObject.length <= x+1" (click)="Dat_like(item.id)" >thumb_up</mat-icon>&nbsp;
+        <mat-icon *ngIf="respObject.length <= x+1" (click)="Dat_dislike(item.id)" >thumb_down</mat-icon>
+
+       
+        
       </mat-step></div>
     </mat-stepper>
 </div>    
