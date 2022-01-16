@@ -227,9 +227,9 @@ loadingSpinner(){
       this.delay(1000).then(any=>{
         this.load = false;
         this.uploadMessage = false;
-        window.location.reload();
         this.receptAddForm.reset();
         this.router.navigate(['']);
+        window.location.reload();
       });
     }
     
@@ -352,7 +352,10 @@ curDate=new Date();
           imgSrc: reader.result
         })
       };
-      this.upload();
+      
+      this.delay(500).then(any=>{
+       this.upload();
+      });
     }
   }
   get uf(){

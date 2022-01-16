@@ -82,6 +82,14 @@ baseUrl = 'http://kucharkaprotloustiky.rf.gd/api/recepty';
         
       }));
     }
-  
+    
+    vote(data : any) {
+      let params = new HttpParams().set("params", data);
+      return this.http.get(`${this.baseUrl}/vote.php`, { params }).pipe(
+        map((res: any) => {
+          return res['data'];
+        })
+      );
+    }  
   
 }
