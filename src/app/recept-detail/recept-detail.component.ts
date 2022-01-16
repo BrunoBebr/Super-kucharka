@@ -163,5 +163,20 @@ export class ReceptDetailComponent implements OnInit {
   Dat_like_dislike(){
     this.hodnoceni = this.hodnoceni +1;
     console.log(this.hodnoceni);
+    //var data=["id":id];
+  }
+  getFilteredRecepty(params:any): void {
+    this.receptyService.vote(params).subscribe(
+      (data: Recepty[]) => {
+        this.recepty = data;
+        this.success = 'successful retrieval of the list';
+        this.uploaded = true;
+
+      },
+      (err) => {
+        console.log(err);
+        this.error = err;
+      }
+    );
   }
 }
