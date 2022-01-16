@@ -126,8 +126,8 @@
          
         <button *ngIf="x+1 > 1" mat-button matStepperPrevious>Zpět</button>
         <button *ngIf="respObject.length > x+1" mat-button matStepperNext>Další</button>
-        <mat-icon *ngIf="respObject.length <= x+1" (click)="Dat_like(item.id)" >thumb_up</mat-icon>&nbsp;
-        <mat-icon *ngIf="respObject.length <= x+1" (click)="Dat_dislike(item.id)" >thumb_down</mat-icon>
+        <mat-icon *ngIf="respObject.length <= x+1 && hodnoceni" (click)="Dat_like(item.id)" >thumb_up</mat-icon>&nbsp;
+        <mat-icon *ngIf="respObject.length <= x+1 && hodnoceni" (click)="Dat_dislike(item.id)" >thumb_down</mat-icon>
 
        
         

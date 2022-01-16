@@ -25,7 +25,7 @@ export class ReceptDetailComponent implements OnInit {
   load = false;
   uploaded = false;
   uploadMessage = false;
-  hodnoceni = 0;
+  hodnoceni = true;
 
   constructor(private activatedRoute: ActivatedRoute, private receptyService: ReceptyService, private _location: Location, private _formBuilder: FormBuilder,  breakpointObserver: BreakpointObserver) { 
     this.stepperOrientation = breakpointObserver
@@ -162,20 +162,18 @@ export class ReceptDetailComponent implements OnInit {
   }
 
   Dat_like(id:any){
-    this.hodnoceni = this.hodnoceni +1;
     console.log(id);
     var data=[id, "like"];
     var values = JSON.stringify(data);
-
+    this.hodnoceni = false;
     this.getFilteredRecepty(values);
   }
 
   Dat_dislike(id:any){
-    this.hodnoceni = this.hodnoceni -1;
     console.log(this.hodnoceni);
     var data=[id, "dislike"];
     var values = JSON.stringify(data);
-    this.getFilteredRecepty(values);
+    this.hodnoceni = false;
 
   }
 
@@ -184,9 +182,7 @@ export class ReceptDetailComponent implements OnInit {
   getFilteredRecepty(params:any): void {
     this.receptyService.vote(params).subscribe(
       (data: Recepty[]) => {
-        this.recepty = data;
-        this.success = 'successful retrieval of the list';
-        this.uploaded = true;
+        
 
       },
       (err) => {
