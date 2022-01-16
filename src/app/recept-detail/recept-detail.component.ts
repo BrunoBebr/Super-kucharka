@@ -174,6 +174,7 @@ export class ReceptDetailComponent implements OnInit {
     var data=[id, "dislike"];
     var values = JSON.stringify(data);
     this.hodnoceni = false;
+    this.getFilteredRecepty(values);
 
   }
 
