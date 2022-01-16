@@ -67,9 +67,13 @@ import { VaculdaComponent } from './vaculda/vaculda.component';
     InteraktivniPostupDialog,
     OnasDialog,
     VznikWebuDialog,
+<<<<<<< HEAD
     DoporuceneComponent,
     VaculdaComponent,
     
+=======
+    DoporuceneComponent
+>>>>>>> 7f6e5271bd6ea3118dcece42fa991f6ccf3a96e5
   ],
   imports: [
     BrowserModule,

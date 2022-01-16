@@ -189,7 +189,10 @@ export class InteraktivniPostupDialog {}
 @Component({
   selector: 'onas-dialog',
   templateUrl: '../../dialogs/onas.html',
+<<<<<<< HEAD
   styleUrls: ['../../dialogs/onas.scss']
+=======
+>>>>>>> 7f6e5271bd6ea3118dcece42fa991f6ccf3a96e5
   
 })
 export class OnasDialog {}
@@ -198,6 +201,9 @@ export class OnasDialog {}
   selector: 'vznik-webu-dialog',
   templateUrl: '../../dialogs/vznik-webu.html',
   
+<<<<<<< HEAD
   
+=======
+>>>>>>> 7f6e5271bd6ea3118dcece42fa991f6ccf3a96e5
 })
 export class VznikWebuDialog {}
