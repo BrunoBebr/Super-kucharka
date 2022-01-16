@@ -25,6 +25,7 @@ export class ReceptDetailComponent implements OnInit {
   load = false;
   uploaded = false;
   uploadMessage = false;
+  hodnoceni = 0;
 
   constructor(private activatedRoute: ActivatedRoute, private receptyService: ReceptyService, private _location: Location, private _formBuilder: FormBuilder,  breakpointObserver: BreakpointObserver) { 
     this.stepperOrientation = breakpointObserver
@@ -159,5 +160,8 @@ export class ReceptDetailComponent implements OnInit {
     this.isEnabled = false;
     this.zrusitStopky = 1;
   }
-  
+  Dat_like_dislike(){
+    this.hodnoceni = this.hodnoceni +1;
+    console.log(this.hodnoceni);
+  }
 }

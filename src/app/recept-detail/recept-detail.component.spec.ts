@@ -23,3 +23,4 @@ describe('ReceptDetailComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

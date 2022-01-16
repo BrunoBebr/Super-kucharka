@@ -136,3 +136,43 @@ span mat-icon{
     z-index: 100;
     background-color: white;
   }  
+.text_hodnoceni{
+    font-size: 21px;
+    position: absolute;
+    top: 963px;
+    left: 350px;
+}
+.like_button{
+    height: 85px;
+    width: 185px;
+    position: relative;
+}
+.dislike_button{
+    height: 85px;
+    width: 110px;
+    position: relative;
+}
+.number_like{
+    position: relative;
+    width: 50px;
+    border: none;
+    background: none;
+    color: #919191;
+    font-size: 30px;
+    margin: 0 10px;
+    pointer-events: none;
+}
+.number_dislike{
+    position: relative;
+    width: 50px;
+    border: none;
+    background: none;
+    color: #919191;
+    font-size: 30px;
+    margin: 0 10px;
+    pointer-events: none;
+}
+input:active{
+    color: #004eff;
+    transform: scale(1.1);
+}
