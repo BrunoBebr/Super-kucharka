@@ -109,6 +109,7 @@ export class ReceptDetailComponent implements OnInit {
   zvoneni = 0;
   zrusitStopky = 0;
   audio = new Audio();
+  audioT = new Audio();
   shouldContinue = true;
 
   stopky(t:number){
@@ -143,13 +144,17 @@ export class ReceptDetailComponent implements OnInit {
   zapnoutZvoneni(){
     
     this.audio.src = "../../../assets/audio/alarm.mp3";
+    this.audioT.src = "../../../assets/audio/chinese.mp3";
     this.audio.load();
+    this.audioT.load();
+    this.audioT.play();
     this.audio.play();
 
   }
 
   zastavitZvoneni(){
     this.audio.pause();
+    this.audioT.pause();
     this.zvoneni = 0;
     this.value = 100;
     this.isEnabled = false;
