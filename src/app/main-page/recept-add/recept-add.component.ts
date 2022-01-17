@@ -50,6 +50,7 @@ export class ReceptAddComponent implements OnInit {
   img: Img[] = [];
   uploaded = false;
   uploadMessage = false;
+  loadbar = "loading";
   
   
   //postup: FormArray | any[] | undefined;
@@ -243,12 +244,9 @@ openPravidlaVytvoritReceptDialog() {
 
 addRecept(receptAddForm: FormGroup) {
   this.resetAlerts();
-  this.loadingSpinner(); 
+  this.load = true;
   
 
-
-   
-  this.load = true;
 //console.log("SEND " + JSON.stringify(receptAddForm.value));
   this.receptyService.store(receptAddForm.value).subscribe(
     
@@ -258,12 +256,22 @@ addRecept(receptAddForm: FormGroup) {
       //console.log("SENT " + JSON.stringify(receptAddForm.value));
       // Inform the user
       this.success = 'Created successfully';
-      this.uploaded = true;
+      this.uploadMessage = true;
+      this.delay(1000).then(any=>{
+        this.load = false;
+        this.uploadMessage = false;
+        this.receptAddForm.reset();
+        this.router.navigate(['']);
+        window.location.reload();
+      });
  
       // Reset the form
       
     },
-    (err) => (this.error = err.message)
+    (err) => {
+      this.error = err.message;
+      this.loadbar = "error";
+    }
   );
 }
 
@@ -278,6 +286,9 @@ selectFile(event:any){
     }
   }
   
+}
+reload(){
+  window.location.reload();
 }
 onSelectedFile(event:any){
   console.log(event.target.files.length);
