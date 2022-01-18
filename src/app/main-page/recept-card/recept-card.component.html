@@ -27,7 +27,7 @@
         </mat-card-header>
         
         <mat-card-content [routerLink]="['/recept', item.id]"><img mat-card-image src="http://kucharkaprotloustiky.rf.gd/api/recepty/{{item.main_img}}" style="height: 300px; /* adjust as needed */
-        object-fit: contain;">
+        object-fit: cover;">
           <p style="width:400px; height:40px;"> {{ (item.note.length>80)? (item.note | slice:0:80)+'...':(item.note) }}</p>
         </mat-card-content>
         <mat-card-actions>
